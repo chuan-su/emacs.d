@@ -1,0 +1,30 @@
+#emacs byte compiled files
+*.elc
+
+# emacs temp files
+*~
+.#*
+ac-comphist.dat
+ido.last
+recentf
+
+# the package repository
+elpa/
+
+# session information
+.mc-lists.el
+.smex-items
+nrepl-history
+cider-history
+auto-save-list/
+emacs.frameg
+.emacs.desktop
+.emacs.desktop.lock
+eshell
+
+# projectile
+projectile-bookmarks.eld
+
+# osx stuff
+.DS_Store
+/tramp
