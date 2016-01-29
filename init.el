@@ -10,7 +10,7 @@
 (setq package-list '(ac-emmet ac-js2 auto-complete auto-indent-mode autopair dash dockerfile-mode
   emmet-mode epl exec-path-from-shell flycheck git-commit js2-mode let-alist 
   magit monokai-theme move-text pkg-info popup projectile simple-httpd skewer-mode sublime-themes 
-  web-beautify web-mode yaml-mode))
+  web-beautify web-mode yaml-mode php-mode))
 
 ; list the repositories containing them
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -30,6 +30,9 @@
 
 
 (load-theme 'spolsky t)
+
+
+
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
@@ -60,6 +63,7 @@
 (ac-config-default)
 
 (projectile-global-mode)
+(add-hook 'projectile-mode-hook 'projectile-rails-on)
 ;;js2-mode
 ;;major mode for editing .js
 ;;ac-js2
@@ -76,6 +80,8 @@
 (add-hook 'js-mode-hook
           (lambda () (flycheck-mode t)))
 (setq magit-last-seen-setup-instructions "1.4.0")
+
+(setq ruby-indent-level 4)
 
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
