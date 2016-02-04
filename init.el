@@ -11,6 +11,7 @@
   emmet-mode epl exec-path-from-shell flycheck git-commit js2-mode let-alist 
   magit monokai-theme move-text pkg-info popup projectile simple-httpd skewer-mode sublime-themes material-theme helm-projectile web-beautify web-mode yaml-mode))
 
+
 ; list the repositories containing them
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("melpa" . "http://melpa.org/packages/")))
@@ -29,7 +30,6 @@
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
-
 
 ;;(load-theme 'spolsky t)
 (load-theme 'material-light t)
@@ -70,6 +70,7 @@
 (ac-config-default)
 
 (projectile-global-mode)
+(add-hook 'projectile-mode-hook 'projectile-rails-on)
 ;;js2-mode
 ;;major mode for editing .js
 ;;ac-js2
@@ -86,6 +87,8 @@
 (add-hook 'js-mode-hook
           (lambda () (flycheck-mode t)))
 (setq magit-last-seen-setup-instructions "1.4.0")
+
+(setq ruby-indent-level 4)
 
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
@@ -122,16 +125,16 @@
 (eval-after-load 'web-mode
   '(define-key web-mode-map (kbd "C-c b") 'web-beautify-html))
 
-(setq load-path (cons"/usr/local/Cellar/erlang/17.5/lib/erlang/lib/tools-2.7.2/emacs" load-path))
-(setq erlang-root-dir "/usr/local/Cellar/erlang/17.5/lib/erlang/lib")
-(setq exec-path (cons "/usr/local/Cellar/erlang/17.5/lib/erlang/bin" exec-path))
-(require 'erlang-start)
+;;(setq load-path (cons"/usr/local/Cellar/erlang/17.5/lib/erlang/lib/tools-2.7.2/emacs" load-path))
+;;(setq erlang-root-dir "/usr/local/Cellar/erlang/17.5/lib/erlang/lib")
+;;(setq exec-path (cons "/usr/local/Cellar/erlang/17.5/lib/erlang/bin" exec-path))
+;;(require 'erlang-start)
 
-(defun customizations-for-erlang-mode ()
-  (linum-mode t)  
-)
+;;(defun customizations-for-erlang-mode ()
+  ;;(linum-mode t)  
+;;)
 
-(add-hook 'erlang-mode-hook 'customizations-for-erlang-mode)
+;;(add-hook 'erlang-mode-hook 'customizations-for-erlang-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
