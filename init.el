@@ -9,7 +9,7 @@
 ; list the packages you want
 (setq package-list '(ac-emmet ac-js2 auto-complete auto-indent-mode autopair dash dockerfile-mode
   emmet-mode epl exec-path-from-shell flycheck git-commit js2-mode let-alist 
-  magit monokai-theme move-text pkg-info popup projectile simple-httpd skewer-mode sublime-themes material-theme helm-projectile web-beautify web-mode yaml-mode))
+  magit monokai-theme move-text pkg-info popup projectile projectile-rails simple-httpd skewer-mode sublime-themes material-theme helm-projectile web-beautify web-mode yaml-mode))
 
 
 ; list the repositories containing them
