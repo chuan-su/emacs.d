@@ -8,8 +8,8 @@
 
 ; list the packages you want
 (setq package-list '(ac-emmet ac-js2 auto-complete auto-indent-mode autopair dash dockerfile-mode
-  emmet-mode epl exec-path-from-shell flycheck git-commit js2-mode let-alist 
-  magit monokai-theme move-text pkg-info popup projectile projectile-rails simple-httpd skewer-mode sublime-themes material-theme helm-projectile web-beautify web-mode yaml-mode))
+  emmet-mode epl exec-path-from-shell flycheck git-commit js2-mode rvm let-alist 
+  magit monokai-theme move-text pkg-info popup projectile projectile-rails simple-httpd skewer-mode sublime-themes material-theme molokai-theme zenburn-theme helm-projectile web-beautify web-mode yaml-mode))
 
 
 ; list the repositories containing them
@@ -22,6 +22,9 @@
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
+(require 'rvm)
+(rvm-use-default)
+
 ; fetch the list of packages available 
 (unless package-archive-contents
   (package-refresh-contents))
@@ -32,8 +35,10 @@
     (package-install package)))
 
 ;;(load-theme 'spolsky t)
-(load-theme 'material-light t)
-
+;;(load-theme 'material-light t)
+(setq molokai-theme-kit t)
+(load-theme 'molokai t)
+;;(load-theme 'zenburn t)
 ;;(add-hook 'prog-mode-hook 'rainbow-delimeters-mode)
 
 (when (memq window-system '(mac ns))
@@ -106,6 +111,20 @@
     ("html" . (ac-source-emmet-html-aliases ac-source-emmet-html-snippets))
     ("css" . (ac-source-css-property ac-source-emmet-css-snippets))))
 
+(setq web-mode-enable-current-element-highlight t)
+(setq web-mode-enable-current-column-highlight t)
+;; Custom web-mode colors
+(custom-set-faces
+ '(web-mode-html-tag-face
+   ((t (:foreground "#f92672"))))
+ '(web-mode-html-tag-bracket-face
+   ((t (:foreground "#ffffff"))))
+ '(web-mode-current-element-highlight-face
+   ((t (:foreground "#FF8A4B"))))
+ '(web-mode-current-element-highlight-face
+   ((t (:background "#000000"
+                    :foreground "#FF8A4B")))))
+
 (require 'web-beautify) ;; Not necessary if using ELPA package
 (eval-after-load 'js2-mode
   '(define-key js2-mode-map (kbd "C-c b") 'web-beautify-js))
@@ -144,11 +163,11 @@
  '(current-language-environment "UTF-8")
  '(custom-safe-themes
    (quote
-    ("b571f92c9bfaf4a28cb64ae4b4cdbda95241cd62cf07d942be44dc8f46c491f4" "f0d8af755039aa25cd0792ace9002ba885fd14ac8e8807388ab00ec84c9497d7" "68d36308fc6e7395f7e6355f92c1dd9029c7a672cbecf8048e2933a053cf27e6" "fa11f855b5f606f84e50106a7360c72aac88fee5f6fb8084aa4329009b61c5a2" "49de25b465bc3c2498bcd4c1575fa0090bd56fc79cdb49b919b49eaea17ee1dd" "38ba6a938d67a452aeb1dada9d7cdeca4d9f18114e9fc8ed2b972573138d4664" "e9776d12e4ccb722a2a732c6e80423331bcb93f02e089ba2a4b02e85de1cf00e" "72a81c54c97b9e5efcc3ea214382615649ebb539cb4f2fe3a46cd12af72c7607" "3cd28471e80be3bd2657ca3f03fbb2884ab669662271794360866ab60b6cb6e6" "0c29db826418061b40564e3351194a3d4a125d182c6ee5178c237a7364f0ff12" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" default)))
-
+    ("20e359ef1818a838aff271a72f0f689f5551a27704bf1c9469a5c2657b417e6c" "b571f92c9bfaf4a28cb64ae4b4cdbda95241cd62cf07d942be44dc8f46c491f4" "f0d8af755039aa25cd0792ace9002ba885fd14ac8e8807388ab00ec84c9497d7" "68d36308fc6e7395f7e6355f92c1dd9029c7a672cbecf8048e2933a053cf27e6" "fa11f855b5f606f84e50106a7360c72aac88fee5f6fb8084aa4329009b61c5a2" "49de25b465bc3c2498bcd4c1575fa0090bd56fc79cdb49b919b49eaea17ee1dd" "38ba6a938d67a452aeb1dada9d7cdeca4d9f18114e9fc8ed2b972573138d4664" "e9776d12e4ccb722a2a732c6e80423331bcb93f02e089ba2a4b02e85de1cf00e" "72a81c54c97b9e5efcc3ea214382615649ebb539cb4f2fe3a46cd12af72c7607" "3cd28471e80be3bd2657ca3f03fbb2884ab669662271794360866ab60b6cb6e6" "0c29db826418061b40564e3351194a3d4a125d182c6ee5178c237a7364f0ff12" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" default)))
  '(fringe-mode (quote (nil . 0)) nil (fringe))
  '(inhibit-startup-screen t)
  '(scroll-bar-mode nil)
+ '(show-paren-mode t)
  '(tool-bar-mode nil)
  '(tool-bar-position (quote left)))
 (custom-set-faces
