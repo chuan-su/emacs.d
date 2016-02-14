@@ -141,6 +141,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(font-lock-keyword-face ((t (:foreground "#F0DFAF" :weight normal))))
  '(web-mode-current-element-highlight-face ((t (:foreground "#FF8A4B"))))
  '(web-mode-html-tag-bracket-face ((t (:foreground "#ffffff"))))
  '(web-mode-html-tag-face ((t (:foreground "#f92672")))))
