@@ -7,9 +7,10 @@
 (package-initialize)
 
 ; list the packages you want
-(setq package-list '(ac-emmet ac-js2 auto-complete auto-indent-mode autopair dockerfile-mode
-  emmet-mode epl exec-path-from-shell flycheck git-commit js2-mode let-alist rvm inf-ruby ac-inf-ruby                                                
-  magit monokai-theme move-text pkg-info popup projectile helm-projectile projectile-rails project-explorer simple-httpd skewer-mode sublime-themes material-theme molokai-theme zenburn-theme  web-beautify web-mode yaml-mode evil-nerd-commenter multiple-cursors smartparens))
+(setq package-list '(ac-js2 auto-complete auto-indent-mode dockerfile-mode
+ flycheck js2-mode rvm  magit move-text projectile projectile-rails project-explorer zenburn-theme  web-mode yaml-mode evil-nerd-commenter multiple-cursors smartparens
+ markdown-mode 
+))
 
 
 ; list the repositories containing them
@@ -29,9 +30,6 @@
   (unless (package-installed-p package)
     (package-install package)))
 
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
-
 ;; windows switch
 ;;(global-set-key (kbd "C-x o") 'switch-window)
 (global-set-key (kbd "C-c <left>")  'windmove-left)
@@ -43,16 +41,10 @@
 (setq mouse-wheel-progressive-speed nil)
 
 ;;theme
-;;(load-theme 'spolsky t)
-;; (load-theme 'material t)
-;;(setq molokai-theme-kit t)
-;;(load-theme 'molokai t)
 (load-theme 'zenburn t)
 (set-default-font "Inconsolata 14")
 
 ;; projectile
-(require 'helm-projectile)
-(helm-projectile-on)
 (projectile-global-mode)
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
 ;; project explorer toggle
@@ -71,16 +63,12 @@
 
 ;; prog-mode
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'prog-mode-hook 'highlight-numbers-mode)
 (setq-default cursor-type 'bar)
 (show-paren-mode 1)
 (setq show-paren-delay 0)
 (require 'smartparens-config)
 (add-hook 'prog-mode-hook 'smartparens-mode)
 (add-hook 'markdown-mode-hook 'smartparens-mode)
-;; auto-pair
-;; (require 'autopair)
-;; (autopair-global-mode)
 (setq linum-format "%d")
 (add-hook 'prog-mode-hook 'linum-mode)
 (setq-default indent-tabs-mode nil)
@@ -95,12 +83,6 @@
 (setq ruby-indent-level 2)
 (require 'rvm)
 (rvm-use-default)
-;; (eval-after-load 'inf-ruby '
-;;   '(define-key inf-ruby-mode-map (kbd "TAB") 'auto-complete))
- (eval-after-load 'auto-complete
-  '(add-to-list 'ac-modes 'inf-ruby-mode))
-(add-hook 'inf-ruby-mode-hook 'ac-inf-ruby-enable)
-
 ;; projectile-rails
 (require 'projectile-rails)
 (define-key projectile-rails-mode-map (kbd "s-m")   'projectile-rails-find-model)
@@ -115,7 +97,7 @@
 ;;for other liraries.js check ac-js2 readme
 (require 'js2-mode)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-(add-to-list 'ac-modes 'erlang-mode)
+;;(add-to-list 'ac-modes 'erlang-mode)
 
 ;;(add-hook 'js-mode-hook 'js2-minor-mode)
 ;;(add-hook 'js2-mode-hook 'ac-js2-mode)
@@ -156,25 +138,6 @@
  '(web-mode-current-element-highlight-face ((t (:foreground "#FF8A4B"))))
  '(web-mode-html-tag-bracket-face ((t (:foreground "#ffffff"))))
  '(web-mode-html-tag-face ((t (:foreground "#f92672")))))
-
-(require 'web-beautify) ;; Not necessary if using ELPA package
-(eval-after-load 'js2-mode
-  '(define-key js2-mode-map (kbd "C-c b") 'web-beautify-js))
-;; Or if you're using 'js-mode' (a.k.a 'javascript-mode')
-(eval-after-load 'js
-  '(define-key js-mode-map (kbd "C-c b") 'web-beautify-js))
-
-(eval-after-load 'json-mode
-  '(define-key json-mode-map (kbd "C-c b") 'web-beautify-js))
-
-(eval-after-load 'sgml-mode
-  '(define-key html-mode-map (kbd "C-c b") 'web-beautify-html))
-
-(eval-after-load 'css-mode
-  '(define-key css-mode-map (kbd "C-c b") 'web-beautify-css))
-
-(eval-after-load 'web-mode
-  '(define-key web-mode-map (kbd "C-c b") 'web-beautify-html))
 
 
 ;;erlang
