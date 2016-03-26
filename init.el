@@ -39,16 +39,13 @@
 
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+
 ;; windows switch
-;;(global-set-key (kbd "C-x o") 'switch-window)
-;; (global-set-key (kbd "C-c <left>")  'windmove-left)
-;; (global-set-key (kbd "C-c <right>") 'windmove-right)
-;; (global-set-key (kbd "C-c <up>")    'windmove-up)
-;; (global-set-key (kbd "C-c <down>")  'windmove-down)
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
- (setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control) . nil)))
- (setq mouse-wheel-progressive-speed nil)
+
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control) . nil)))
+(setq mouse-wheel-progressive-speed nil)
 
 ;;theme
 (load-theme 'zenburn t)
