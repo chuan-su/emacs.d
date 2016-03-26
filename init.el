@@ -47,26 +47,26 @@
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control) . nil)))
 (setq mouse-wheel-progressive-speed nil)
 
-;;theme
+;; set default theme
 (load-theme 'zenburn t)
+;; set default font
 (set-default-font "Inconsolata 14")
-
 ;; projectile
 (projectile-global-mode)
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
 ;; project explorer toggle
 (global-set-key (kbd "C-c .") 'project-explorer-toggle)
 
-;; editor suger
+ ;; move-text
 (require 'move-text)
-(move-text-default-bindings) ;; move-text
+(move-text-default-bindings)
+;; multi cursor
 (require 'multiple-cursors)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 ;; comment and uncomment-lines, "M ;"
 (evilnc-default-hotkeys)
-
 
 ;; prog-mode
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
@@ -90,6 +90,7 @@
 (setq ruby-indent-level 2)
 (require 'rvm)
 (rvm-use-default)
+
 ;; projectile-rails
 (require 'projectile-rails)
 (define-key projectile-rails-mode-map (kbd "s-m")   'projectile-rails-find-model)
