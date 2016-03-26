@@ -9,7 +9,7 @@
 ; list the packages you want
 (setq package-list '(ac-js2 auto-complete auto-indent-mode smex ido-ubiquitous ido-vertical-mode dockerfile-mode
  flycheck js2-mode rvm  magit move-text projectile projectile-rails project-explorer zenburn-theme  web-mode yaml-mode evil-nerd-commenter multiple-cursors smartparens
- markdown-mode 
+ markdown-mode restclient
 ))
 
 ; list the repositories containing them
