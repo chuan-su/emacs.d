@@ -7,11 +7,10 @@
 (package-initialize)
 
 ; list the packages you want
-(setq package-list '(ac-js2 auto-complete auto-indent-mode dockerfile-mode
+(setq package-list '(ac-js2 auto-complete auto-indent-mode smex ido-ubiquitous ido-vertical-mode dockerfile-mode
  flycheck js2-mode rvm  magit move-text projectile projectile-rails project-explorer zenburn-theme  web-mode yaml-mode evil-nerd-commenter multiple-cursors smartparens
- markdown-mode 
+ markdown-mode restclient
 ))
-
 
 ; list the repositories containing them
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -30,36 +29,44 @@
   (unless (package-installed-p package)
     (package-install package)))
 
+(require 'ido)
+(ido-mode t)
+(ido-everywhere t)
+(require 'ido-ubiquitous)
+(ido-ubiquitous-mode t)
+(require 'ido-vertical-mode)
+(ido-vertical-mode t)
+
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+
 ;; windows switch
-;;(global-set-key (kbd "C-x o") 'switch-window)
-(global-set-key (kbd "C-c <left>")  'windmove-left)
-(global-set-key (kbd "C-c <right>") 'windmove-right)
-(global-set-key (kbd "C-c <up>")    'windmove-up)
-(global-set-key (kbd "C-c <down>")  'windmove-down)
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
 
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control) . nil)))
 (setq mouse-wheel-progressive-speed nil)
 
-;;theme
+;; set default theme
 (load-theme 'zenburn t)
+;; set default font
 (set-default-font "Inconsolata 14")
-
 ;; projectile
 (projectile-global-mode)
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
 ;; project explorer toggle
 (global-set-key (kbd "C-c .") 'project-explorer-toggle)
 
-;; editor suger
+ ;; move-text
 (require 'move-text)
-(move-text-default-bindings) ;; move-text
+(move-text-default-bindings)
+;; multi cursor
 (require 'multiple-cursors)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 ;; comment and uncomment-lines, "M ;"
 (evilnc-default-hotkeys)
-
 
 ;; prog-mode
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
@@ -83,6 +90,7 @@
 (setq ruby-indent-level 2)
 (require 'rvm)
 (rvm-use-default)
+
 ;; projectile-rails
 (require 'projectile-rails)
 (define-key projectile-rails-mode-map (kbd "s-m")   'projectile-rails-find-model)
@@ -120,6 +128,7 @@
 (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 
