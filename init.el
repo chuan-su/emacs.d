@@ -109,6 +109,9 @@
 (global-flycheck-mode)
 (setq magit-last-seen-setup-instructions "1.4.0")
 
+(require 'php-mode)
+(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
+(add-hook 'php-mode-hook 'php-enable-symfony2-coding-style)
 
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
