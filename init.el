@@ -8,7 +8,7 @@
 
 ; list the packages you want
 (setq package-list '(ac-js2 auto-complete auto-indent-mode smex ido-ubiquitous ido-vertical-mode dockerfile-mode
- flycheck js2-mode rvm  magit move-text projectile projectile-rails project-explorer zenburn-theme  web-mode yaml-mode evil-nerd-commenter multiple-cursors smartparens
+ flycheck js2-mode rvm  magit move-text projectile projectile-rails project-explorer zenburn-theme material-theme web-mode yaml-mode evil-nerd-commenter multiple-cursors smartparens
  markdown-mode restclient
 ))
 
@@ -18,6 +18,7 @@
 
 ; activate all the packages (in particular autoloads)
 (package-initialize)
+
 
 
 ; fetch the list of packages available 
@@ -48,7 +49,8 @@
 (setq mouse-wheel-progressive-speed nil)
 
 ;; set default theme
-(load-theme 'zenburn t)
+;;(load-theme 'zenburn t)
+;;(load-theme 'material t)
 ;; set default font
 (set-default-font "Inconsolata 14")
 ;; projectile
@@ -76,6 +78,7 @@
 (require 'smartparens-config)
 (add-hook 'prog-mode-hook 'smartparens-mode)
 (add-hook 'markdown-mode-hook 'smartparens-mode)
+
 (setq linum-format "%d")
 (add-hook 'prog-mode-hook 'linum-mode)
 (setq-default indent-tabs-mode nil)
@@ -105,7 +108,6 @@
 ;;for other liraries.js check ac-js2 readme
 (require 'js2-mode)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-;;(add-to-list 'ac-modes 'erlang-mode)
 
 ;;(add-hook 'js-mode-hook 'js2-minor-mode)
 ;;(add-hook 'js2-mode-hook 'ac-js2-mode)
@@ -147,19 +149,6 @@
  '(web-mode-current-element-highlight-face ((t (:foreground "#FF8A4B"))))
  '(web-mode-html-tag-bracket-face ((t (:foreground "#ffffff"))))
  '(web-mode-html-tag-face ((t (:foreground "#f92672")))))
-
-
-;;erlang
-;;(setq load-path (cons"/usr/local/Cellar/erlang/17.5/lib/erlang/lib/tools-2.7.2/emacs" load-path))
-;;(setq erlang-root-dir "/usr/local/Cellar/erlang/17.5/lib/erlang/lib")
-;;(setq exec-path (cons "/usr/local/Cellar/erlang/17.5/lib/erlang/bin" exec-path))
-;;(require 'erlang-start)
-
-;;(defun customizations-for-erlang-mode ()
-  ;;(linum-mode t)  
-;;)
-
-;;(add-hook 'erlang-mode-hook 'customizations-for-erlang-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
