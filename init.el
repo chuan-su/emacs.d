@@ -8,7 +8,7 @@
 ;;list the packages you want
 ;;(setq package-list '(ac-js2 auto-complete auto-indent-mode smex ido-ubiquitous ido-vertical-mode dockerfile-mode
  ;;flycheck js2-mode php-mode rvm  magit move-text projectile projectile-rails project-explorer zenburn-theme  web-mode yaml-mode evil-nerd-commenter multiple-cursors smartparens
- ;;markdown-mode restclient
+ ;;markdown-mode restclient rainbow-delimiters
 ;;))
 
 ; list the repositories containing them
@@ -68,6 +68,10 @@
 ;; comment and uncomment-lines, "M ;"
 (evilnc-default-hotkeys)
 
+(require 'rainbow-delimiters)
+
+;;(global-rainbow-delimiters-mode)
+
 ;; prog-mode
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (setq-default cursor-type 'bar)
@@ -98,7 +102,7 @@
 (define-key projectile-rails-mode-map (kbd "s-c")   'projectile-rails-find-controller)
 (define-key projectile-rails-mode-map (kbd "s-v")   'projectile-rails-find-view)
 (define-key projectile-rails-mode-map (kbd "s-RET") 'projectile-rails-goto-file-at-point)
-(define-key projectile-rails-mode-map (kbd "C-c g")  projectile-rails-mode-goto-map)
+(define-key projectile-rails-mode-map (kbd "C-c g") 'projectile-rails-mode-goto-map)
 
 ;;js2-mode
 ;;major mode for editing .js
