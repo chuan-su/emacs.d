@@ -2,32 +2,30 @@
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
-;;(package-refresh-contents)
+(package-refresh-contents)
 
 
 ;;list the packages you want
-;;(setq package-list '(ac-js2 auto-complete auto-indent-mode smex flx-ido ido-ubiquitous ido-vertical-mode dockerfile-mode
- ;;flycheck js2-mode php-mode rvm  magit move-text projectile projectile-rails project-explorer zenburn-theme  web-mode yaml-mode evil-nerd-commenter multiple-cursors smartparens
- ;;markdown-mode restclient rainbow-delimiters
-;;))
+(setq package-list '(solarized-theme ivy counsel company ibuffer smex neotree evil-nerd-commenter multiple-cursors smartparens rainbow-delimiters magit projectile projectile-rails restclient dockerfile-mode flycheck js2-mode php-mode rvm  web-mode yaml-mode markdown-mode  
+))
 
-; list the repositories containing them
-;(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
- ;                        ("melpa" . "http://melpa.org/packages/")))
+list the repositories containing them
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                        ("melpa" . "http://melpa.org/packages/")))
 
-; activate all the packages (in particular autoloads)
+;;activate all the packages (in particular autoloads)
 (package-initialize)
 
 
 
-; fetch the list of packages available
-;;(unless package-archive-contents
-  ;;(package-refresh-contents))
+;;fetch the list of packages available
+(unless package-archive-contents
+  (package-refresh-contents))
 
-; install the missing packages
-;;(dolist (package package-list)
-  ;;(unless (package-installed-p package)
-    ;;(package-install package)))
+;;install the missing packages
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
 
 
 ;; set default theme
