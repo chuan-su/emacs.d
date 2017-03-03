@@ -101,11 +101,6 @@
 (setq-default tab-width 4)
 
 
-;; auto complete mod
-;;; should be loaded after yasnippet so that they can work together
-;; (require 'auto-complete-config)
-;; (add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete/dict")
-;; (ac-config-default)
 (require 'flycheck)
 (add-hook 'js-mode-hook
           (lambda () (flycheck-mode t)))
