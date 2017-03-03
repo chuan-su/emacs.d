@@ -83,8 +83,6 @@
 (setq magit-completing-read-function 'ivy-completing-read)
 
 
-;;(add-hook 'prog-mode-hook 'aggressive-indent-mode)
-
 (setq-default cursor-type 'bar)
 (show-paren-mode 1)
 (setq show-paren-delay 0)
