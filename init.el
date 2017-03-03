@@ -130,15 +130,9 @@
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
 
 ;;js2-mode
-;;major mode for editing .js
-;;ac-js2
-;;for other liraries.js check ac-js2 readme
 (require 'js2-mode)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
-;;(add-hook 'js-mode-hook 'js2-minor-mode)
-;;(add-hook 'js2-mode-hook 'ac-js2-mode)
-;;(setq ac-js2-evaluate-calls t)
 
 (require 'php-mode)
 (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
