@@ -83,12 +83,6 @@
 (setq magit-completing-read-function 'ivy-completing-read)
 
 
-
-;; move-text
-;;(require 'move-text)
-;;(move-text-default-bindings)
-;; multi cursor
-
 ;;(add-hook 'prog-mode-hook 'aggressive-indent-mode)
 
 (setq-default cursor-type 'bar)
