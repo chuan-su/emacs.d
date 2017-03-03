@@ -137,24 +137,10 @@
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 
 (setq web-mode-enable-css-colorization t)
-(setq web-mode-ac-sources-alist
-  '(("php" . (ac-source-yasnippet ac-source-php-auto-yasnippets))
-    ("html" . (ac-source-emmet-html-aliases ac-source-emmet-html-snippets))
-    ("css" . (ac-source-css-property ac-source-emmet-css-snippets))))
+
 
 (setq web-mode-enable-current-element-highlight t)
 (setq web-mode-enable-auto-pairing t)
-;;(setq web-mode-enable-current-column-highlight t)
-;; Custom web-mode colors
-;;(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- ;;'(web-mode-current-element-highlight-face ((t (:foreground "#FF8A4B"))))
- ;;'(web-mode-html-tag-bracket-face ((t (:foreground "#ffffff"))))
- ;;'(web-mode-html-tag-face ((t (:foreground "#f92672")))))
-
 
 ;; pretty prints the selection on a json document
 ;; uses python.
