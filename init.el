@@ -157,16 +157,6 @@
         (ivy-backward-kill-word))
       (ivy-backward-delete-char))))
 
-;; (use-package smex
-;;   :disabled t
-;;   :bind (("M-x"     . smex)
-;;          ("M-X"     . smex-major-mode-commands)
-;;          ("C-c M-x" . execute-extended-command))
-;;   :init
-;;   (progn
-;;     (setq smex-save-file (expand-file-name "smex-items" user-cache-directory))
-;;     (smex-initialize)
-;;     ))
 
 (use-package windmove                   ; Move between windows with Shift+Arrow
   :bind (("C-c w <left>"  . windmove-left)
