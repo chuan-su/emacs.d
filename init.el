@@ -16,27 +16,56 @@
 ;;(package-refresh-contents)
 
 
-;;list the packages you want
-; (setq package-list '(solarized-theme ivy counsel company ibuffer smex neotree evil-nerd-commenter multiple-cursors smartparens rainbow-delimiters magit projectile projectile-rails restclient dockerfile-mode flycheck js2-mode php-mode rvm  web-mode yaml-mode markdown-mode
-; ))
-;
-; list the repositories containing them
-; (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-;                         ("melpa" . "http://melpa.org/packages/")))
-;
-; ;;activate all the packages (in particular autoloads)
+;list the packages you want
+(setq package-list '(
+  solarized-theme
+  nlinum
+  avy
+  flx
+  swiper
+  ivy
+  counsel
+  company
+  ibuffer
+  neotree
+  reveal-in-osx-finder
+  evil-nerd-commenter
+  multiple-cursors
+  smartparens
+  rainbow-delimiters
+  magit
+  restclient
+  company-restclient
+  projectile
+  projectile-rails
+  dockerfile-mode
+  flycheck
+  js2-mode
+  php-mode
+  rvm
+  web-mode
+  yaml-mode
+  markdown-mode
+))
+
+;list the repositories containing them
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                        ("melpa" . "http://melpa.org/packages/")))
+
+
+
+
+;;fetch the list of packages available
+(unless package-archive-contents
+  (package-refresh-contents))
+
+;;install the missing packages
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
+
+;;activate all the packages (in particular autoloads)
 (package-initialize)
-;
-;
-;
-; ;;fetch the list of packages available
-; (unless package-archive-contents
-;   (package-refresh-contents))
-;
-; ;;install the missing packages
-; (dolist (package package-list)
-;   (unless (package-installed-p package)
-;     (package-install package)))
 
 (defvar user-cache-directory (expand-file-name ".cache"  user-emacs-directory))
 (make-directory user-cache-directory t)
@@ -226,7 +255,7 @@
 (use-package magit                      ; The one and only Git frontend
   :ensure t
   :bind (("C-x g"   . magit-status)))
-  
+
 (use-package dired                      ; Edit directories
   :defer t
   :config
@@ -291,7 +320,7 @@
     (setq projectile-require-project-root nil)
     (setq projectile-completion-system 'ivy)
     (add-to-list 'projectile-globally-ignored-files ".DS_Store"))
-  
+
   :diminish projectile-mode)
 
 (use-package projectile-rails
@@ -400,7 +429,7 @@
  '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
-    (nlinum use-package zenburn-theme yaml-mode web-mode solarized-theme smex smartparens rvm rainbow-delimiters projectile-rails project-explorer php-mode neotree multiple-cursors move-text markdown-mode magit labburn-theme imenu-anywhere ido-vertical-mode ido-ubiquitous gruvbox-theme flycheck flx-ido evil-nerd-commenter dockerfile-mode counsel company-restclient avy auto-indent-mode auto-complete aggressive-indent ac-js2)))
+    ()))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
@@ -408,8 +437,10 @@
 
 ;; Custom web-mode colors
 (custom-set-faces
- '(web-mode-current-element-highlight-face
-   ((t (:background nil
-                    :foreground "magenta")))))
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(web-mode-current-element-highlight-face ((t (:background nil :foreground "magenta")))))
 
 ;;; init.el ends here
