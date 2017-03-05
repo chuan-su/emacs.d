@@ -7,7 +7,7 @@
 ac-comphist.dat
 ido.last
 recentf
-
+.cache/
 # the package repository
 elpa/
 
