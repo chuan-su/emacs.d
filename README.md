@@ -16,5 +16,4 @@ You'd probably do well to put a few aliases in your .zshrc (or .bashrc):
 
     alias e='emacsclient -t'
     alias ec='emacsclient -c'
-    alias vim='emacsclient -t'
-    alias vi='emacsclient -t'
+
