@@ -146,12 +146,12 @@
 
 (use-package avy-jump                   ; Jump to characters in buffers
   :ensure avy
-  :bind (("M-s" . avy-goto-char)
+  :bind (("C-c j j" . avy-goto-char)
          ("C-c j w" . avy-goto-word-1)
          ("C-c j l" . avy-goto-line)
          ("C-c j b" . avy-pop-mark)
-         ("C-c j j" . avy-goto-char-2)
-         ("C-c j k" . avy-goto-char-in-line)))
+         ("C-c j k" . avy-goto-char-2)
+         ("C-c j i" . avy-goto-char-in-line)))
 
 (use-package counsel
   :ensure t
