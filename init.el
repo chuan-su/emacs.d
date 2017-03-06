@@ -49,10 +49,7 @@
 
 ;list the repositories containing them
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                        ("melpa" . "http://melpa.org/packages/")))
-
-
-
+                        ("melpa" . "http://melpa.org/packages/"))) 
 
 ;;fetch the list of packages available
 (unless package-archive-contents
@@ -73,7 +70,7 @@
 (global-set-key (kbd "C-j") #'join-line)
 (global-set-key (kbd "M-g") #'goto-line)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "<C-tab>") 'bury-buffer)
+(global-set-key (kbd "C-q") 'bury-buffer)
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 3) ((control) . nil)))
 (setq mouse-wheel-progressive-speed nil)
 (setq-default cursor-type 'bar)
@@ -123,7 +120,7 @@
 ;; neotree
 (use-package neotree
   :ensure t
-  :bind (("C-." . neotree-toggle))
+  :bind (("C-c ." . neotree-toggle))
   :config (setq neo-window-width 32
                 neo-create-file-auto-open t
                 neo-banner-message nil
