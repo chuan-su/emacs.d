@@ -37,7 +37,6 @@
   restclient
   company-restclient
   projectile
-  projectile-rails
   dockerfile-mode
   flycheck
   js2-mode
@@ -322,15 +321,6 @@
     (add-to-list 'projectile-globally-ignored-files ".DS_Store"))
 
   :diminish projectile-mode)
-
-(use-package projectile-rails
-  :config
-  (progn
-    (define-key projectile-rails-mode-map (kbd "s-m")   'projectile-rails-find-model)
-    (define-key projectile-rails-mode-map (kbd "s-c")   'projectile-rails-find-controller)
-    (define-key projectile-rails-mode-map (kbd "s-v")   'projectile-rails-find-view)
-    ))
-
 
 (use-package js2-mode                   ; Powerful Javascript mode
   :ensure t
