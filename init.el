@@ -66,11 +66,25 @@
 (defvar user-cache-directory (expand-file-name ".cache"  user-emacs-directory))
 (make-directory user-cache-directory t)
 
+
 ;; Some global keybindings
-(global-set-key (kbd "C-j") #'join-line)
-(global-set-key (kbd "M-g") #'goto-line)
+;; "TAB" is equivalent to "C-i"
+;; "RET" IS equivalent to "C-m"
+;; "ESC" is equivalent to "C-["
+;; "C-h k" foe kdb help
+(global-set-key (kbd "M-g") 'goto-line)
+(global-set-key (kbd "M-j") 'join-line)
+(global-set-key (kbd "C-x C-j") 'dired-jump)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-q") 'bury-buffer)
+;; 'M-0 C-K','C-U 0 C-K'
+(global-set-key (kbd "C-<backspace>") 'backward-kill-line) 
+(global-set-key (kbd "C-c C-k") (lambda ()
+                                  (interactive)
+                                  (kill-line 0)
+                                  (indent-according-to-mode)))
+
+
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 3) ((control) . nil)))
 (setq mouse-wheel-progressive-speed nil)
 (setq-default cursor-type 'bar)
@@ -78,10 +92,7 @@
 (setq-default tab-width 4)
 (evilnc-default-hotkeys) ;; comment and uncomment-lines, "M ;"
 
-
-
 ;; set default theme
-
 (use-package solarized                  ; My colour theme
   :disabled t
   :ensure solarized-theme
@@ -142,12 +153,12 @@
 
 (use-package avy-jump                   ; Jump to characters in buffers
   :ensure avy
-  :bind (("C-c j j" . avy-goto-char)
+  :bind (("C-j"     . avy-goto-char-in-line)
+         ("C-c j j" . avy-goto-char)
          ("C-c j w" . avy-goto-word-1)
          ("C-c j l" . avy-goto-line)
          ("C-c j b" . avy-pop-mark)
-         ("C-c j k" . avy-goto-char-2)
-         ("C-c j i" . avy-goto-char-in-line)))
+         ("C-c j k" . avy-goto-char-2)))
 
 (use-package counsel
   :ensure t
