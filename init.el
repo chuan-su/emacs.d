@@ -45,6 +45,7 @@
   web-mode
   yaml-mode
   markdown-mode
+  simplenote2
 ))
 
 ;list the repositories containing them
@@ -65,7 +66,9 @@
 
 (defvar user-cache-directory (expand-file-name ".cache"  user-emacs-directory))
 (make-directory user-cache-directory t)
-
+(defvar user-backup-directory (expand-file-name ".backup"  user-emacs-directory))
+(make-directory user-backup-directory t)
+(setq backup-directory-alist `(("." . ,user-backup-directory)))
 
 ;; Some global keybindings
 ;; "TAB" is equivalent to "C-i"
@@ -77,12 +80,9 @@
 (global-set-key (kbd "C-x C-j") 'dired-jump)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-q") 'bury-buffer)
+(global-set-key (kbd "M-q") 'unbury-buffer)
 ;; 'M-0 C-K','C-U 0 C-K'
-(global-set-key (kbd "C-<backspace>") 'backward-kill-line) 
-(global-set-key (kbd "C-c C-k") (lambda ()
-                                  (interactive)
-                                  (kill-line 0)
-                                  (indent-according-to-mode)))
+(global-set-key (kbd "M-k") (lambda () (interactive) (kill-line 0) (indent-according-to-mode)))
 
 
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 3) ((control) . nil)))
@@ -393,6 +393,7 @@
                         (setq web-mode-script-padding 2)
                         (setq web-mode-enable-css-colorization t)
                         (setq web-mode-enable-current-element-highlight t)
+                        (setq web-mode-markup-indent-offset 2)
                         (setq web-mode-enable-auto-pairing t)))))
 
 (use-package yaml-mode
@@ -418,6 +419,8 @@
   (interactive "r")
   (shell-command-on-region b e "python -m json.tool" (current-buffer) t)
   )
+
+;; simplenote
 (use-package simplenote2
   :init
   (add-hook 'simplenote2-note-mode-hook 'markdown-mode)
@@ -440,7 +443,7 @@
  '(markdown-command "/usr/local/bin/pandoc")
  '(package-selected-packages
    (quote
-    (gh-md simplenote2 yaml-mode web-mode use-package solarized-theme smartparens rvm reveal-in-osx-finder rainbow-delimiters projectile-rails php-mode nlinum neotree multiple-cursors markdown-mode magit js2-mode flycheck flx evil-nerd-commenter dockerfile-mode counsel company-restclient avy)))
+    (yaml-mode web-mode use-package solarized-theme smartparens simplenote2 rvm reveal-in-osx-finder rainbow-delimiters projectile-rails php-mode nlinum neotree multiple-cursors markdown-mode magit js2-mode flycheck flx evil-nerd-commenter dockerfile-mode counsel company-restclient avy)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
