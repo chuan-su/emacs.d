@@ -65,7 +65,9 @@
 
 (defvar user-cache-directory (expand-file-name ".cache"  user-emacs-directory))
 (make-directory user-cache-directory t)
-
+(defvar user-backup-directory (expand-file-name ".backup"  user-emacs-directory))
+(make-directory user-backup-directory t)
+(setq backup-directory-alist `(("." . ,user-backup-directory)))
 
 ;; Some global keybindings
 ;; "TAB" is equivalent to "C-i"
@@ -77,12 +79,9 @@
 (global-set-key (kbd "C-x C-j") 'dired-jump)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-q") 'bury-buffer)
+(global-set-key (kbd "M-q") 'unbury-buffer)
 ;; 'M-0 C-K','C-U 0 C-K'
-(global-set-key (kbd "C-<backspace>") 'backward-kill-line) 
-(global-set-key (kbd "C-c C-k") (lambda ()
-                                  (interactive)
-                                  (kill-line 0)
-                                  (indent-according-to-mode)))
+(global-set-key (kbd "M-k") (lambda () (interactive) (kill-line 0) (indent-according-to-mode)))
 
 
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 3) ((control) . nil)))
@@ -393,6 +392,7 @@
                         (setq web-mode-script-padding 2)
                         (setq web-mode-enable-css-colorization t)
                         (setq web-mode-enable-current-element-highlight t)
+                        (setq web-mode-markup-indent-offset 2)
                         (setq web-mode-enable-auto-pairing t)))))
 
 (use-package yaml-mode
