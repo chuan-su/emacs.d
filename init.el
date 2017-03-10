@@ -429,7 +429,9 @@
     ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(fringe-mode (quote (nil . 0)) nil (fringe))
  '(inhibit-startup-screen t)
- '(package-selected-packages nil)
+ '(package-selected-packages
+   (quote
+    (simplenote2 yaml-mode web-mode use-package solarized-theme smartparens rvm reveal-in-osx-finder rainbow-delimiters projectile-rails php-mode nlinum neotree multiple-cursors markdown-mode magit js2-mode flycheck flx evil-nerd-commenter dockerfile-mode counsel company-restclient avy)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
