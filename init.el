@@ -46,6 +46,7 @@
   yaml-mode
   markdown-mode
   simplenote2
+  move-text
 ))
 
 ;list the repositories containing them
@@ -74,7 +75,7 @@
 ;; "TAB" is equivalent to "C-i"
 ;; "RET" IS equivalent to "C-m"
 ;; "ESC" is equivalent to "C-["
-;; "C-h k" foe kdb help
+;; "C-h k" for kdb help
 (global-set-key (kbd "M-g") 'goto-line)
 (global-set-key (kbd "M-j") 'join-line)
 (global-set-key (kbd "C-x C-j") 'dired-jump)
@@ -82,8 +83,7 @@
 (global-set-key (kbd "C-q") 'bury-buffer)
 (global-set-key (kbd "M-q") 'unbury-buffer)
 ;; 'M-0 C-K','C-U 0 C-K'
-(global-set-key (kbd "M-k") (lambda () (interactive) (kill-line 0) (indent-according-to-mode)))
-
+(global-set-key (kbd "C-<backspace>") (lambda () (interactive) (kill-line 0) (indent-according-to-mode)))
 
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 3) ((control) . nil)))
 (setq mouse-wheel-progressive-speed nil)
@@ -91,6 +91,11 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (evilnc-default-hotkeys) ;; comment and uncomment-lines, "M ;"
+
+;; move-text M-up / M-down
+(use-package move-text
+  :config
+  (move-text-default-bindings))
 
 ;; set default theme
 (use-package solarized                  ; My colour theme
@@ -166,7 +171,9 @@
   (("M-x" . counsel-M-x)
    ("C-M-i" . counsel-imenu)
    ("C-x C-f" . counsel-find-file)
-   ("C-c d" . counsel-dired-jump))
+   ("C-c d" . counsel-dired-jump)
+   ("C-c g g". counsel-git-grep)
+   ("C-c g f". counsel-git))
   :config
   (ivy-mode 1)
   (setq counsel-find-file-at-point t)
@@ -232,11 +239,25 @@
   (add-hook 'prog-mode-hook 'nlinum-mode)
   :bind (("C-c t l" . nlinum-mode)))
 
-(use-package smartparens
-  :ensure t
+(use-package smartparens-config
+  :ensure smartparens
+  :bind (:map smartparens-mode-map
+         ("C-M-a"  . sp-beginning-of-sexp)
+         ("C-M-e"  . sp-end-of-sexp)
+         ("C-M-f"  . sp-forward-sexp)
+         ("C-M-b"  . sp-backward-sexp)
+         ("C-M-n"  . sp-next-sexp)
+         ("C-M-p"  . sp-previous-sexp)
+         ("C-M-k"  . sp-kill-sexp)
+         ("M-k"    . sp-backward-kill-sexp)
+         ("M-["    . sp-backward-unwrap-sexp)
+         ("M-]"    . sp-unwrap-sexp))
   :init
-  (add-hook 'prog-mode-hook 'smartparens-mode)
-  (add-hook 'markdown-mode-hook 'smartparens-mode)
+  (add-hook 'prog-mode-hook 'turn-on-smartparens-mode)
+  (add-hook 'markdown-mode-hook 'turn-on-smartparens-mode)
+  :config
+  (progn
+    (show-smartparens-global-mode t))
   :diminish smartparens-mode)
 
 (use-package company
@@ -429,6 +450,7 @@
   :config
   (simplenote2-setup))
 
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -443,7 +465,7 @@
  '(markdown-command "/usr/local/bin/pandoc")
  '(package-selected-packages
    (quote
-    (yaml-mode web-mode use-package solarized-theme smartparens simplenote2 rvm reveal-in-osx-finder rainbow-delimiters projectile-rails php-mode nlinum neotree multiple-cursors markdown-mode magit js2-mode flycheck flx evil-nerd-commenter dockerfile-mode counsel company-restclient avy)))
+    (move-text yaml-mode web-mode use-package solarized-theme smartparens simplenote2 rvm reveal-in-osx-finder rainbow-delimiters projectile-rails php-mode nlinum neotree multiple-cursors markdown-mode magit js2-mode flycheck flx evil-nerd-commenter dockerfile-mode counsel company-restclient avy)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
