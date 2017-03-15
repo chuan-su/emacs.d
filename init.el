@@ -443,12 +443,17 @@
 
 ;; simplenote
 (use-package simplenote2
-  :init
-  (add-hook 'simplenote2-note-mode-hook 'markdown-mode)
-  (setq simplenote2-email "chuansu@icloud.com")
-  (setq simplenote2-password nil)
-  :config
-  (simplenote2-setup))
+    :init 
+    (setq simplenote2-email "chuansu@icloud.com")
+    (setq simplenote2-password nil)
+    (setq simplenote2-notes-mode 'markdown-mode)
+    (setq simplenote2-markdown-notes-mode 'markdown-mode)
+    :config
+    (simplenote2-setup)
+    (add-hook 'simplenote2-note-mode-hook
+        (lambda ()
+            (buffer-local-set-key (kbd "C-x C-s") 'simplenote2-push-buffer)))
+    :bind ("<f4>" . simplenote2-browse))
 
 
 (custom-set-variables
