@@ -47,6 +47,8 @@
   markdown-mode
   simplenote2
   move-text
+  google-this
+  goto-chg
 ))
 
 ;list the repositories containing them
@@ -118,7 +120,7 @@
   (load-theme 'solarized-dark 'no-confirm))
 
 ;;set default theme
-(load-theme 'solarized-dark t)
+(load-theme 'leuven t)
 ;; set default font
 (set-frame-font "Inconsolata 14")
 (add-to-list 'default-frame-alist
