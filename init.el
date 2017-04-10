@@ -13,7 +13,7 @@
   (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
-;;(package-refresh-contents)
+(package-refresh-contents)
 
 
 ;list the packages you want
@@ -38,6 +38,7 @@
   company-restclient
   projectile
   dockerfile-mode
+  scala-mode
   flycheck
   js2-mode
   php-mode
@@ -352,6 +353,10 @@
     (add-to-list 'projectile-globally-ignored-files ".DS_Store"))
 
   :diminish projectile-mode)
+
+(use-package scala-mode
+  :interpreter
+  ("scala" . scala-mode))
 
 (use-package js2-mode                   ; Powerful Javascript mode
   :ensure t
