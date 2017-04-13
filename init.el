@@ -120,7 +120,7 @@
   (load-theme 'solarized-dark 'no-confirm))
 
 ;;set default theme
-(load-theme 'leuven t)
+(load-theme 'solarized-dark t)
 ;; set default font
 (set-frame-font "Inconsolata 14")
 (add-to-list 'default-frame-alist
