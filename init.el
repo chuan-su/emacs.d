@@ -16,7 +16,7 @@
 (package-refresh-contents)
 
 
-;list the packages you want
+;;list the packages you want
 (setq package-list '(
   solarized-theme
   nlinum
@@ -167,6 +167,11 @@
          ("C-c j l" . avy-goto-line)
          ("C-c j b" . avy-pop-mark)
          ("C-c j k" . avy-goto-char-2)))
+
+(use-package goto-chg
+  :ensure t
+  :bind (("C-c j p" . goto-last-change)
+         ("C-c j n" . goto-last-change-reverse)))
 
 (use-package counsel
   :ensure t
