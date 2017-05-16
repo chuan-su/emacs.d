@@ -177,6 +177,7 @@
   :ensure t
   :bind
   (("M-x" . counsel-M-x)
+   ("M-s" . counsel-grep)
    ("C-M-i" . counsel-imenu)
    ("C-x C-f" . counsel-find-file)
    ("C-c d" . counsel-dired-jump)
