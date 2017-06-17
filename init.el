@@ -46,9 +46,7 @@
   web-mode
   yaml-mode
   markdown-mode
-  simplenote2
   move-text
-  google-this
   goto-chg
 ))
 
@@ -453,21 +451,6 @@
   (interactive "r")
   (shell-command-on-region b e "python -m json.tool" (current-buffer) t)
   )
-
-;; simplenote
-(use-package simplenote2
-    :init 
-    (setq simplenote2-email "chuansu@icloud.com")
-    (setq simplenote2-password nil)
-    (setq simplenote2-notes-mode 'markdown-mode)
-    (setq simplenote2-markdown-notes-mode 'markdown-mode)
-    :config
-    (simplenote2-setup)
-    (add-hook 'simplenote2-note-mode-hook
-        (lambda ()
-            (buffer-local-set-key (kbd "C-x C-s") 'simplenote2-push-buffer)))
-    :bind ("<f4>" . simplenote2-browse))
-
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
