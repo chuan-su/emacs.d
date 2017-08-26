@@ -1,15 +1,21 @@
-#emacs byte compiled files
+# emacs byte compiled files
 *.elc
 
 # emacs temp files
+
 *~
 .#*
 ac-comphist.dat
 ido.last
 recentf
 .cache/
+url/
+network-security.data
+
 # the package repository
 elpa/
+
+
 
 # session information
 .mc-lists.el

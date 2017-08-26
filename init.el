@@ -5,13 +5,16 @@
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
+
 (setq package-enable-at-startup nil
       ;; work around package.el bug in Emacs 25
       package--init-file-ensured t)
+
 (package-initialize)
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+
 (require 'use-package)
 (package-refresh-contents)
 
@@ -19,6 +22,7 @@
 ;;list the packages you want
 (setq package-list '(
   solarized-theme
+  pbcopy
   nlinum
   avy
   flx
@@ -93,6 +97,10 @@
 (setq-default tab-width 4)
 (evilnc-default-hotkeys) ;; comment and uncomment-lines, "M ;"
 
+;; pbcopy
+(use-package pbcopy
+  :config
+  (turn-on-pbcopy))
 ;; move-text M-up / M-down
 (use-package move-text
   :config
@@ -386,7 +394,6 @@
                   '("$" "unsafeWindow" "localStorage" "jQuery"
                     "setTimeout" "setInterval" "location" "skewer"
                     "console" "phantom"))))
-
 (use-package php-mode
   :ensure t
   :mode "\\.php[345]?\\'"
@@ -466,7 +473,7 @@
  '(markdown-command "/usr/local/bin/pandoc")
  '(package-selected-packages
    (quote
-    (move-text yaml-mode web-mode use-package solarized-theme smartparens simplenote2 rvm reveal-in-osx-finder rainbow-delimiters projectile-rails php-mode nlinum neotree multiple-cursors markdown-mode magit js2-mode flycheck flx evil-nerd-commenter dockerfile-mode counsel company-restclient avy)))
+    (pbcopy move-text yaml-mode web-mode use-package solarized-theme smartparens simplenote2 rvm reveal-in-osx-finder rainbow-delimiters projectile-rails php-mode nlinum neotree multiple-cursors markdown-mode magit js2-mode flycheck flx evil-nerd-commenter dockerfile-mode counsel company-restclient avy)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
