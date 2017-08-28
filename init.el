@@ -351,7 +351,6 @@
         (neotree-find (projectile-project-root)))))
 
   (progn
-    (add-hook 'projectile-mode-hook 'projectile-rails-on)
     (bind-keys
      :map projectile-mode-map
      ("C-x p f" . projectile-find-file)
@@ -459,6 +458,9 @@
   (shell-command-on-region b e "python -m json.tool" (current-buffer) t)
   )
 
+;; sql
+(add-hook 'sql-interactive-mode-hook(lambda () (toggle-truncate-lines t)))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -473,7 +475,7 @@
  '(markdown-command "/usr/local/bin/pandoc")
  '(package-selected-packages
    (quote
-    (pbcopy move-text yaml-mode web-mode use-package solarized-theme smartparens simplenote2 rvm reveal-in-osx-finder rainbow-delimiters projectile-rails php-mode nlinum neotree multiple-cursors markdown-mode magit js2-mode flycheck flx evil-nerd-commenter dockerfile-mode counsel company-restclient avy)))
+    (pbcopy move-text yaml-mode web-mode use-package solarized-theme smartparens simplenote2 rvm reveal-in-osx-finder rainbow-delimiters php-mode nlinum neotree multiple-cursors markdown-mode magit js2-mode flycheck flx evil-nerd-commenter dockerfile-mode counsel company-restclient avy)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
