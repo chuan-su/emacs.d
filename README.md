@@ -1,7 +1,7 @@
 # .emacs.d
 > My Emacs config
 
-# Running
+## Running
 
 Run Emacs in daemon mode:
 
@@ -51,7 +51,7 @@ This will shutdown the daemon immediately with out prompting or saving files
 
 ### Emacs as SQL client
 
-To create a PostgreSQL connection start by running `M-x sql-mysql`
+To create a MySQL connection start by running `M-x sql-mysql`
 
 You'll be prompted for `username`, `database`, `password` and `host` and then you'll be dropped in a buffer dedicated to the connection you've specified.
 
