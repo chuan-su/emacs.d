@@ -4,9 +4,9 @@
 # Running
 
 Run Emacs in daemon mode:
-    
+
     $ emacs -daemon
-    
+
 Afterwards I connect to the server with either a terminal or a GUI client like this:
 
     $ emacsclient -t

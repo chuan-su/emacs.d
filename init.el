@@ -76,6 +76,9 @@
 (make-directory user-backup-directory t)
 (setq backup-directory-alist `(("." . ,user-backup-directory)))
 
+;; clean white space before save
+(add-hook 'before-save-hook 'whitespace-cleanup)
+
 ;; Some global keybindings
 ;; "TAB" is equivalent to "C-i"
 ;; "RET" IS equivalent to "C-m"
