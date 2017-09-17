@@ -3,8 +3,9 @@
 
 ;;; Code:
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("melpa" . "http://melpa.org/packages/")
+                         ("org" . "http://orgmode.org/elpa/")))
 
 (setq package-enable-at-startup nil
       ;; work around package.el bug in Emacs 25
@@ -17,7 +18,6 @@
 
 (require 'use-package)
 (package-refresh-contents)
-
 
 ;;list the packages you want
 (setq package-list '(
@@ -53,10 +53,6 @@
   move-text
   goto-chg
 ))
-
-;list the repositories containing them
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                        ("melpa" . "http://melpa.org/packages/"))) 
 
 ;;fetch the list of packages available
 (unless package-archive-contents
@@ -170,7 +166,7 @@
 
 (use-package avy-jump                   ; Jump to characters in buffers
   :ensure avy
-  :bind (("C-j"     . avy-goto-char-in-line)
+  :bind (("C-c j i" . avy-goto-char-in-line)
          ("C-c j j" . avy-goto-char)
          ("C-c j w" . avy-goto-word-1)
          ("C-c j l" . avy-goto-line)
@@ -463,6 +459,15 @@
 
 ;; sql
 (add-hook 'sql-interactive-mode-hook(lambda () (toggle-truncate-lines t)))
+;; org mode
+(use-package org
+  :defer t
+  :ensure org-plus-contrib
+  :config
+  (progn
+    (setcar (nthcdr 2 org-emphasis-regexp-components) " \t\r\n,\"")
+    (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
+    ))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -478,7 +483,7 @@
  '(markdown-command "/usr/local/bin/pandoc")
  '(package-selected-packages
    (quote
-    (pbcopy move-text yaml-mode web-mode use-package solarized-theme smartparens simplenote2 rvm reveal-in-osx-finder rainbow-delimiters php-mode nlinum neotree multiple-cursors markdown-mode magit js2-mode flycheck flx evil-nerd-commenter dockerfile-mode counsel company-restclient avy)))
+    (org-plus-contrib pbcopy move-text yaml-mode web-mode use-package solarized-theme smartparens simplenote2 rvm reveal-in-osx-finder rainbow-delimiters php-mode nlinum neotree multiple-cursors markdown-mode magit js2-mode flycheck flx evil-nerd-commenter dockerfile-mode counsel company-restclient avy)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil)

@@ -14,7 +14,7 @@ Afterwards I connect to the server with either a terminal or a GUI client like t
 
 You'd probably do well to put a few aliases in your .zshrc (or .bashrc):
 
-    alias e='emacsclient -t'
+    alias e='TERM=xterm-256color emacsclient -t'
     alias ec='emacsclient -c'
 
 Also you can open a file with cursor on choosen line:
@@ -28,8 +28,11 @@ From outside of emacs this can be achieved using emacsclient:
 
     $ emacsclient -e '(kill-emacs)'
 
-This will shutdown the daemon immediately with out prompting or saving files
+I also added an alias in my .bashrc
 
+    alias ek="emacsclient -e '(kill-emacs)'"
+
+This will shutdown the daemon immediately with out prompting or saving files
 
 ### Customized Keymap
 
@@ -37,7 +40,7 @@ This will shutdown the daemon immediately with out prompting or saving files
   * `M-\    `  M-x delete-horizontal-space
   * `C-c .  `  toggle neotree
   * `C-c f J`  reveal-in-osx-finder
-  * `C-j    `  avy-goto-char-in-line
+  * `C-c j i`  avy-goto-char-in-line
   * `C-c j j`  avy-goto-char
   * `C-c j w`  avy-goto-word-1
   * `C-c j l`  avy-goto-line
