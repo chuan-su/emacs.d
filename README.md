@@ -51,21 +51,3 @@ This will shutdown the daemon immediately with out prompting or saving files
   * `C-c g g`  counsel-git-grep
   * `C-c C-<`  mc/mark-all-like-this
   * `C-c C-,`  mc/mark-all-like-this
-
-### Emacs as SQL client
-
-To create a MySQL connection start by running `M-x sql-mysql`
-
-You'll be prompted for `username`, `database`, `password` and `host` and then you'll be dropped in a buffer dedicated to the connection you've specified.
-
-While in some `.sql` file execute `M-x sql-set-product` and type `mysql`.
-
-Afterwards do `M-x sql-set-sqli-buffer` and select the name of the connection buffer you want to use (it's probably called `*SQL*` if you have only one connection buffer).
-
-Now you'll be able to use the following commands like from the `.sql` buffer and the code from the region will be executed in the associated connection buffer.
-
-  * `C-r C-n` sql-send-line-and-next
-  * `C-c C-r` sql-send-region
-  * `C-c C-b` sql-send-buffer
-  * `C-c C-s` sql-send-string
-  * `C-c C-c` sql-send-paragraph
