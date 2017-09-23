@@ -2,111 +2,72 @@
 ;;; Copyright (c) 2016 Chuan Su <chuan.su@outlook.com>
 
 ;;; Code:
-(require 'package)
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("melpa" . "http://melpa.org/packages/")
-                         ("org" . "http://orgmode.org/elpa/")))
 
-(setq package-enable-at-startup nil
-      ;; work around package.el bug in Emacs 25
-      package--init-file-ensured t)
 
-(package-initialize)
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
-(require 'use-package)
-(package-refresh-contents)
-
-;;list the packages you want
-(setq package-list '(
-  solarized-theme
-  pbcopy
-  nlinum
-  avy
-  flx
-  swiper
-  ivy
-  counsel
-  company
-  ibuffer
-  neotree
-  reveal-in-osx-finder
-  evil-nerd-commenter
-  multiple-cursors
-  smartparens
-  rainbow-delimiters
-  magit
-  restclient
-  company-restclient
-  projectile
-  dockerfile-mode
-  scala-mode
-  flycheck
-  js2-mode
-  php-mode
-  rvm
-  web-mode
-  yaml-mode
-  markdown-mode
-  move-text
-  goto-chg
-))
-
-;;fetch the list of packages available
-(unless package-archive-contents
-  (package-refresh-contents))
-
-;;install the missing packages
-(dolist (package package-list)
-  (unless (package-installed-p package)
-    (package-install package)))
-
-;;activate all the packages (in particular autoloads)
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
 (package-initialize)
 
-(defvar user-cache-directory (expand-file-name ".cache"  user-emacs-directory))
-(make-directory user-cache-directory t)
-(defvar user-backup-directory (expand-file-name ".backup"  user-emacs-directory))
+(defvar user-cache-directory
+  (expand-file-name ".cache"  user-emacs-directory))
+
+(defvar user-backup-directory
+  (expand-file-name ".backup"  user-emacs-directory))
+
+(defvar setup-packages-file
+      (expand-file-name "setup-packages.el" user-emacs-directory))
+
+(setq backup-directory-alist
+      `(("." . ,user-backup-directory)))
+
+(setq custom-file
+      (expand-file-name "custom.el" user-emacs-directory)) ;; keep emacs custom-settings in separate file
+
+(make-directory user-cache-directory  t)
 (make-directory user-backup-directory t)
-(setq backup-directory-alist `(("." . ,user-backup-directory)))
 
-;; clean white space before save
-(add-hook 'before-save-hook 'whitespace-cleanup)
+(load custom-file)
+(load setup-packages-file)
 
-;; Some global keybindings
-;; "TAB" is equivalent to "C-i"
-;; "RET" IS equivalent to "C-m"
-;; "ESC" is equivalent to "C-["
-;; "C-h k" for kdb help
-(global-set-key (kbd "M-g") 'goto-line)
-(global-set-key (kbd "M-j") 'join-line)
-(global-set-key (kbd "C-x C-j") 'dired-jump)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "C-q") 'bury-buffer)
-(global-set-key (kbd "M-q") 'unbury-buffer)
-;; 'M-0 C-K','C-U 0 C-K'
-(global-set-key (kbd "C-<backspace>") (lambda () (interactive) (kill-line 0) (indent-according-to-mode)))
+;; Remove scrollbars, menu bars, and toolbars
+(when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
+;; Get rid of Welcome screeen
+(setq inhibit-splash-screen t)
+(setq inhibit-startup-message t)
+(setq initial-scratch-message ";; Life is Good")
+
+;; Other settings
+(setq tramp-default-method "ssh")
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 3) ((control) . nil)))
 (setq mouse-wheel-progressive-speed nil)
 (setq-default cursor-type 'bar)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
-(evilnc-default-hotkeys) ;; comment and uncomment-lines, "M ;"
+;; Set default font
+(add-to-list 'default-frame-alist '(font . "Inconsolata-14"))
+(set-default-font "Inconsolata-14")
 
-;; pbcopy
-(use-package pbcopy
-  :config
-  (turn-on-pbcopy))
-;; move-text M-up / M-down
-(use-package move-text
-  :config
-  (move-text-default-bindings))
+;; Key bindings
+(global-set-key (kbd "M-g") 'goto-line)
+(global-set-key (kbd "M-j") 'join-line)
+(global-set-key (kbd "C-x C-j") 'dired-jump)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-c {") 'previous-buffer)
+(global-set-key (kbd "C-c }") 'next-buffer)
 
-;; set default theme
-(use-package solarized                  ; My colour theme
+;; hooks
+(add-hook 'before-save-hook 'whitespace-cleanup) ;; clean white space before save
+(add-hook 'sql-interactive-mode-hook(lambda () (toggle-truncate-lines t))) ;; sql
+
+(require 'use-package)
+
+;; favorite theme
+(use-package solarized
   :disabled t
   :ensure solarized-theme
   :config
@@ -122,17 +83,29 @@
         solarized-height-plus-2 1.0
         solarized-height-plus-3 1.0
         solarized-height-plus-4 1.0)
-
   (load-theme 'solarized-dark 'no-confirm))
 
 ;;set default theme
 (load-theme 'solarized-dark t)
-;; set default font
-(set-frame-font "Inconsolata 14")
-(add-to-list 'default-frame-alist
-               (cons 'font "Inconsolata 14"))
 
-; Auto-revert buffers of changed files
+(use-package which-key
+  :ensure t
+  :config
+  (progn
+    (setq which-key-popup-type 'side-window) ;;Default
+    ;; (setq which-key-popup-type 'minibuffer)
+    (setq which-key-compute-remaps t) ;Show correct descriptions for remapped keys
+    (setq which-key-allow-multiple-replacements t) ;Default = nil))
+    )
+  (which-key-mode))
+
+;; move-text M-up / M-down
+(use-package move-text
+  :ensure t
+  :config
+  (move-text-default-bindings))
+
+;; ; Auto-revert buffers of changed files
 (use-package autorevert
   :init (global-auto-revert-mode)
   :config
@@ -141,7 +114,6 @@
         global-auto-revert-non-file-buffers t)
   )
 
-;; neotree
 (use-package neotree
   :ensure t
   :bind (("C-c ." . neotree-toggle))
@@ -154,17 +126,27 @@
                 neo-show-hidden-files t
                 neo-auto-indent-point t))
 
-;; Reveal current buffer in finder
+;; Mac only, reveal current buffer in finder
 (use-package reveal-in-osx-finder
+  :if (memq window-system '(mac ns))
   :ensure t
   ;; Bind analogous to `dired-jump' at C-c f j
   :bind (("C-c f J" . reveal-in-osx-finder)))
 
+;; Mac only
+(use-package exec-path-from-shell
+  :if (memq window-system '(mac ns))
+  :ensure t
+  :config
+  (exec-path-from-shell-initialize))
 
-(use-package flx
-  :ensure t)
+;; Mac only
+(use-package pbcopy
+  :if (memq window-system '(mac ns))
+  :config
+  (turn-on-pbcopy))
 
-(use-package avy-jump                   ; Jump to characters in buffers
+(use-package avy-jump              ; Jump to characters in buffers
   :ensure avy
   :bind (("C-c j i" . avy-goto-char-in-line)
          ("C-c j j" . avy-goto-char)
@@ -196,24 +178,6 @@
   (setq ivy-initial-inputs-alist nil)
   (define-key ivy-minibuffer-map (kbd "<return>") 'ivy-alt-done))
 
-(use-package swiper
-  :ensure t
-  :defer nil
-  :init (ivy-mode 1)
-  :config
-  (global-set-key "\C-s" 'swiper)
-  (setf ivy-wrap t
-        ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
-  (define-key ivy-minibuffer-map (kbd "C-s") #'ivy-next-line)
-  (define-key ivy-minibuffer-map (kbd "C-r") #'ivy-previous-line)
-  (define-key ivy-minibuffer-map (kbd "C-l")
-    (lambda ()
-      "Be like like Helm."
-      (interactive)
-      (unless (eql (char-before) ?/)
-        (ivy-backward-kill-word))
-      (ivy-backward-delete-char))))
-
 
 (use-package windmove                   ; Move between windows with Shift+Arrow
   :bind (("C-c w <left>"  . windmove-left)
@@ -225,20 +189,29 @@
 
 (use-package multiple-cursors           ; Edit text with multiple cursors
   :ensure t
-  :bind (("C-<". mc/mark-previous-like-this)
-         ("C->". mc/mark-next-like-this)
-         ("C-c C-<" . mc/mark-all-like-this)
-         ("C-c C-," . mc/mark-all-like-this))
+  :bind (("M-p". mc/mark-previous-like-this)
+         ("M-n". mc/mark-next-like-this)
+         ("M-a" . mc/mark-all-like-this)
+         ("C-c e". mc/edit-lines))
   :config
   (setq mc/mode-line
         ;; Simplify the MC mode line indicator
         '(:propertize (:eval (concat " " (number-to-string (mc/num-cursors))))
                       face font-lock-warning-face)))
+(use-package expand-region
+  :ensure t
+  :bind (("C-c >" . er/expand-region)))
 
+(use-package visual-regexp
+  :ensure t
+  :init
+  (use-package visual-regexp-steroids :ensure t)
+  :bind (("C-c r" . vr/replace)
+         ("C-c q" . vr/query-replace)
+         ("C-c m" . vr/mc-mark) ; Need multiple cursors
+         ("C-M-r" . vr/isearch-backward)
+         ("C-M-s" . vr/isearch-forward)))
 
-;;(require 'rainbow-delimiters)
-;; prog-mode
-;;(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (use-package rainbow-delimiters         ; Highlight delimiters by depth
   :ensure t
   :defer t
@@ -296,7 +269,7 @@
 
 (use-package magit                      ; The one and only Git frontend
   :ensure t
-  :bind (("C-x g"   . magit-status)))
+  :bind (("C-x m"   . magit-status)))
 
 (use-package dired                      ; Edit directories
   :defer t
@@ -323,7 +296,6 @@
 
 (use-package paren
   :config (show-paren-mode))
-
 
 (use-package flycheck
   :ensure t
@@ -432,7 +404,6 @@
                         (setq web-mode-enable-current-element-highlight t)
                         (setq web-mode-markup-indent-offset 2)
                         (setq web-mode-enable-auto-pairing t)))))
-
 (use-package yaml-mode
   :ensure t
   :defer t
@@ -448,6 +419,10 @@
          ("\\.mkd\\'" . markdown-mode)
          (".simplenote\\'" . markdown-mode)))
 
+(use-package dockerfile-mode
+  :mode "Dockerfile\\'"
+  :ensure t)
+
 ;; pretty prints the selection on a json document
 ;; uses python.
 ;; adjust the python path and executable.
@@ -457,8 +432,6 @@
   (shell-command-on-region b e "python -m json.tool" (current-buffer) t)
   )
 
-;; sql
-(add-hook 'sql-interactive-mode-hook(lambda () (toggle-truncate-lines t)))
 ;; org mode
 (use-package org
   :defer t
@@ -468,33 +441,4 @@
     (setcar (nthcdr 2 org-emphasis-regexp-components) " \t\r\n,\"")
     (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
     ))
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(current-language-environment "UTF-8")
- '(custom-safe-themes
-   (quote
-    ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
- '(fringe-mode (quote (nil . 0)) nil (fringe))
- '(inhibit-startup-screen t)
- '(markdown-command "/usr/local/bin/pandoc")
- '(package-selected-packages
-   (quote
-    (org-plus-contrib pbcopy move-text yaml-mode web-mode use-package solarized-theme smartparens simplenote2 rvm reveal-in-osx-finder rainbow-delimiters php-mode nlinum neotree multiple-cursors markdown-mode magit js2-mode flycheck flx evil-nerd-commenter dockerfile-mode counsel company-restclient avy)))
- '(scroll-bar-mode nil)
- '(show-paren-mode t)
- '(tool-bar-mode nil)
- '(tool-bar-position (quote left)))
-
-;; Custom web-mode colors
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(web-mode-current-element-highlight-face ((t (:background nil :foreground "magenta")))))
-
 ;;; init.el ends here
