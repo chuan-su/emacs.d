@@ -3,12 +3,11 @@
 
 ;;; Code:
 
-
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-(package-initialize)
+;; (package-initialize)
 
 (defvar user-cache-directory
   (expand-file-name ".cache"  user-emacs-directory))
@@ -16,54 +15,24 @@
 (defvar user-backup-directory
   (expand-file-name ".backup"  user-emacs-directory))
 
-(defvar setup-packages-file
-      (expand-file-name "setup-packages.el" user-emacs-directory))
+(defvar user-settings-directory
+  (expand-file-name "settings" user-emacs-directory))
 
 (setq backup-directory-alist
       `(("." . ,user-backup-directory)))
 
+;; Keep emacs Custom-settings in separate file
 (setq custom-file
-      (expand-file-name "custom.el" user-emacs-directory)) ;; keep emacs custom-settings in separate file
+      (expand-file-name "custom.el" user-settings-directory)) ;; keep emacs custom-settings in separate file
 
 (make-directory user-cache-directory  t)
 (make-directory user-backup-directory t)
 
+(add-to-list 'load-path user-settings-directory)
 (load custom-file)
-(load setup-packages-file)
 
-;; Remove scrollbars, menu bars, and toolbars
-(when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-
-;; Get rid of Welcome screeen
-(setq inhibit-splash-screen t)
-(setq inhibit-startup-message t)
-(setq initial-scratch-message ";; Life is Good")
-
-;; Other settings
-(setq tramp-default-method "ssh")
-(setq mouse-wheel-scroll-amount '(3 ((shift) . 3) ((control) . nil)))
-(setq mouse-wheel-progressive-speed nil)
-(setq-default cursor-type 'bar)
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
-;; Set default font
-(add-to-list 'default-frame-alist '(font . "Inconsolata-14"))
-(set-default-font "Inconsolata-14")
-
-;; Key bindings
-(global-set-key (kbd "M-g") 'goto-line)
-(global-set-key (kbd "M-j") 'join-line)
-(global-set-key (kbd "C-x C-j") 'dired-jump)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "C-c {") 'previous-buffer)
-(global-set-key (kbd "C-c }") 'next-buffer)
-
-;; hooks
-(add-hook 'before-save-hook 'whitespace-cleanup) ;; clean white space before save
-(add-hook 'sql-interactive-mode-hook(lambda () (toggle-truncate-lines t))) ;; sql
-
+(require 'editor)
+(require 'packages)
 (require 'use-package)
 
 ;; favorite theme

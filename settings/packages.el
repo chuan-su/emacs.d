@@ -1,4 +1,7 @@
-;; ~/.emacs.d/setup-packages-file
+;; settings/packages.el --- Emacs configuration of Chuan Su
+;;; Copyright (c) 2016 Chuan Su <chuan.su@outlook.com>
+
+;;; Code:
 
 (require 'cl)
 (require 'package)
@@ -66,3 +69,7 @@
   (dolist (p required-packages)
     (when (not (package-installed-p p))
       (package-install p))))
+
+(provide 'packages)
+
+;; end settings/packages.el
