@@ -20,6 +20,7 @@
 (defvar required-packages
   '(
     solarized-theme
+    zenburn-theme
     use-package
     pbcopy
     nlinum

@@ -35,27 +35,28 @@
 (require 'packages)
 (require 'use-package)
 
-;; favorite theme
+;;favorite theme
 (use-package solarized
-  :disabled t
-  :ensure solarized-theme
+  :if display-graphic-p
   :config
-  ;; Disable variable pitch fonts in Solarized theme
-  (setq solarized-use-variable-pitch nil
-        ;; Prefer italics over bold
-        solarized-use-less-bold t
-        solarized-use-more-italic t
-        solarized-distinct-doc-face t ; Emphasize docstrings
-        ;; I find different font sizes irritating.
-        solarized-height-minus-1 1.0
-        solarized-height-plus-1 1.0
-        solarized-height-plus-2 1.0
-        solarized-height-plus-3 1.0
-        solarized-height-plus-4 1.0)
-  (load-theme 'solarized-dark 'no-confirm))
+  (progn
+    ;; Disable variable pitch fonts in Solarized theme
+    (setq solarized-use-variable-pitch nil
+          ;; Prefer italics over bold
+          solarized-use-less-bold t
+          solarized-use-more-italic t
+          solarized-distinct-doc-face t ; Emphasize docstrings
+          ;; I find different font sizes irritating.
+          solarized-height-minus-1 1.0
+          solarized-height-plus-1 1.0
+          solarized-height-plus-2 1.0
+          solarized-height-plus-3 1.0
+          solarized-height-plus-4 1.0)
+    (load-theme 'solarized-dark 'no-confirm)))
 
-;;set default theme
-(load-theme 'solarized-dark t)
+(use-package zenburn-theme
+  :if (not (display-graphic-p))
+  :init (load-theme 'zenburn 'no-confirm))
 
 (use-package which-key
   :ensure t
