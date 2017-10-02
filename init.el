@@ -37,7 +37,7 @@
 
 ;;favorite theme
 (use-package solarized
-  :if display-graphic-p
+  :if (display-graphic-p)
   :config
   (progn
     ;; Disable variable pitch fonts in Solarized theme
