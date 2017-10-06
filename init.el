@@ -374,6 +374,22 @@
                         (setq web-mode-enable-current-element-highlight t)
                         (setq web-mode-markup-indent-offset 2)
                         (setq web-mode-enable-auto-pairing t)))))
+;; emmet
+(use-package emmet-mode
+  :ensure t
+  :commands (emmet-expand-line emmet-expand)
+  :defer 2
+  :init
+  (progn
+    (add-hook 'sgml-mode-hook 'emmet-mode)
+    (add-hook 'web-mode-hook 'emmet-mode)
+    (add-hook 'css-mode-hook  'emmet-mode))
+  :config
+  (progn
+    (bind-key "C-j" 'emmet-expand-line emmet-mode-keymap)
+    (bind-key "<C-return>" 'emmet-expand emmet-mode-keymap)
+    (setq emmet-indentation 2)))
+
 (use-package yaml-mode
   :ensure t
   :defer t

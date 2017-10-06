@@ -45,6 +45,7 @@
     php-mode
     rvm
     web-mode
+    emmet-mode
     yaml-mode
     markdown-mode
     expand-region
