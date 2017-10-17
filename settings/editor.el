@@ -8,6 +8,13 @@
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
+;; set margin widths
+(setq-default right-margin-width 1)
+(unless (display-graphic-p)
+  ;; set margin left for terminal mode
+  (setq-default left-margin-width 1)
+  )
+
 ;; Get rid of Welcome screeen
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)

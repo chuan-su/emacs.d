@@ -58,6 +58,15 @@
   :if (not (display-graphic-p))
   :init (load-theme 'zenburn 'no-confirm))
 
+;; (use-package zenburn-theme
+;;   :config
+;;   (progn
+;;     (load-theme 'zenburn 'no-confirm)))
+
+(use-package fringe
+  :config
+  (set-fringe-mode '(8 . 0)))
+
 (use-package which-key
   :ensure t
   :config
@@ -189,7 +198,7 @@
   (dolist (hook '(text-mode-hook prog-mode-hook))
     (add-hook hook #'rainbow-delimiters-mode)))
 
-; Line numbers in display margin
+;; Line numbers in display margin
 (use-package nlinum
   :ensure t
   :init
@@ -199,16 +208,16 @@
 (use-package smartparens-config
   :ensure smartparens
   :bind (:map smartparens-mode-map
-         ("C-M-a"  . sp-beginning-of-sexp)
-         ("C-M-e"  . sp-end-of-sexp)
-         ("C-M-f"  . sp-forward-sexp)
-         ("C-M-b"  . sp-backward-sexp)
-         ("C-M-n"  . sp-next-sexp)
-         ("C-M-p"  . sp-previous-sexp)
-         ("C-M-k"  . sp-kill-sexp)
-         ("M-k"    . sp-backward-kill-sexp)
-         ("M-["    . sp-backward-unwrap-sexp)
-         ("M-]"    . sp-unwrap-sexp))
+              ("C-M-a"  . sp-beginning-of-sexp)
+              ("C-M-e"  . sp-end-of-sexp)
+              ("C-M-f"  . sp-forward-sexp)
+              ("C-M-b"  . sp-backward-sexp)
+              ("C-M-n"  . sp-next-sexp)
+              ("C-M-p"  . sp-previous-sexp)
+              ("C-M-k"  . sp-kill-sexp)
+              ("M-k"    . sp-backward-kill-sexp)
+              ("M-["    . sp-backward-unwrap-sexp)
+              ("M-]"    . sp-unwrap-sexp))
   :init
   (add-hook 'prog-mode-hook 'turn-on-smartparens-mode)
   (add-hook 'markdown-mode-hook 'turn-on-smartparens-mode)
@@ -361,34 +370,36 @@
 
 (use-package web-mode
   :defer t
-  :init (progn
-          (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-          (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-          (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode)))
-  :config (progn
-            (add-hook 'web-mode-hook
-                      (lambda ()
-                        (setq web-mode-style-padding 2)
-                        (setq web-mode-script-padding 2)
-                        (setq web-mode-enable-css-colorization t)
-                        (setq web-mode-enable-current-element-highlight t)
-                        (setq web-mode-markup-indent-offset 2)
-                        (setq web-mode-enable-auto-pairing t)))))
+  :init
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode)))
+  :config
+  (progn
+    (add-hook 'web-mode-hook
+              (lambda ()
+                (setq web-mode-style-padding 2)
+                (setq web-mode-script-padding 2)
+                (setq web-mode-enable-css-colorization t)
+                (setq web-mode-enable-current-element-highlight t)
+                (setq web-mode-markup-indent-offset 2)
+                (setq web-mode-enable-auto-pairing t)))))
 ;; emmet
 (use-package emmet-mode
-  :ensure t
-  :commands (emmet-expand-line emmet-expand)
-  :defer 2
-  :init
-  (progn
-    (add-hook 'sgml-mode-hook 'emmet-mode)
-    (add-hook 'web-mode-hook 'emmet-mode)
-    (add-hook 'css-mode-hook  'emmet-mode))
-  :config
-  (progn
-    (bind-key "C-j" 'emmet-expand-line emmet-mode-keymap)
-    (bind-key "<C-return>" 'emmet-expand emmet-mode-keymap)
-    (setq emmet-indentation 2)))
+  :ensure t
+  :commands (emmet-expand-line emmet-expand)
+  :defer 2
+  :init
+  (progn
+    (add-hook 'sgml-mode-hook 'emmet-mode)
+    (add-hook 'web-mode-hook 'emmet-mode)
+    (add-hook 'css-mode-hook  'emmet-mode))
+  :config
+  (progn
+    (bind-key "C-j" 'emmet-expand-line emmet-mode-keymap)
+    (bind-key "<C-return>" 'emmet-expand emmet-mode-keymap)
+    (setq emmet-indentation 2)))
 
 (use-package yaml-mode
   :ensure t
