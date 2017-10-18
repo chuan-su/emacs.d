@@ -67,6 +67,38 @@
   :config
   (set-fringe-mode '(8 . 0)))
 
+;; Golden Ratio
+(use-package golden-ratio
+  :ensure t
+  :diminish golden-ratio-mode
+  :init
+  (setq golden-ratio-auto-scale t)
+  (setq window-combination-resize t)
+  (setq golden-ratio-adjust-factor .8
+      golden-ratio-wide-adjust-factor .8)
+  (setq golden-ratio-exclude-modes '("calc-mode"
+                                     "ediff-mode"
+                                     "dired-mode"
+                                     "restclient-mode"))
+  (defun toggle-golden-ratio ()
+    (interactive)
+    (if (bound-and-true-p golden-ratio-mode)
+        (progn
+          (golden-ratio-mode -1)
+          (balance-windows))
+      (golden-ratio-mode)
+      (golden-ratio)))
+  :bind (("C-c t g" . toggle-golden-ratio))
+  :config
+  (add-to-list 'golden-ratio-exclude-buffer-regexp "^\\*[hH]elm.*")
+  (setq golden-ratio-extra-commands
+        (append golden-ratio-extra-commands
+                '(windmove-up
+                  windmove-down
+                  windmove-left
+                  windmove-right))))
+
+;; which-key
 (use-package which-key
   :ensure t
   :config
@@ -438,4 +470,5 @@
     (setcar (nthcdr 2 org-emphasis-regexp-components) " \t\r\n,\"")
     (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
     ))
+
 ;;; init.el ends here
