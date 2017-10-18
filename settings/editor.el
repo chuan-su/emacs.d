@@ -2,6 +2,7 @@
 ;;; Copyright (c) 2016 Chuan Su <chuan.su@outlook.com>
 
 ;;; Code:
+(require 'copywithoutselection)
 
 ;; Remove scrollbars, menu bars, and toolbars
 (when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -48,6 +49,9 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-c {") 'previous-buffer)
 (global-set-key (kbd "C-c }") 'next-buffer)
+(global-set-key (kbd "C-c w") (quote copy-word))
+(global-set-key (kbd "C-c l") (quote copy-line))
+(global-set-key (kbd "C-c s") (quote thing-copy-string-to-mark))
 
 ;; hooks
 (add-hook 'before-save-hook 'whitespace-cleanup) ;; clean white space before save

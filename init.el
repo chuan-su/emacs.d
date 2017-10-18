@@ -159,10 +159,10 @@
 
 
 (use-package windmove                   ; Move between windows with Shift+Arrow
-  :bind (("C-c w <left>"  . windmove-left)
-         ("C-c w <right>" . windmove-right)
-         ("C-c w <up>"    . windmove-up)
-         ("C-c w <down>"  . windmove-down))
+  :bind (("C-x w <left>"  . windmove-left)
+         ("C-x w <right>" . windmove-right)
+         ("C-x w <up>"    . windmove-up)
+         ("C-x w <down>"  . windmove-down))
   :config (windmove-default-keybindings 'shift))
 
 
