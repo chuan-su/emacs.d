@@ -35,8 +35,8 @@
 (setq-default cursor-type 'bar)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
-(setq-default truncate-lines t)
-;;(setq-default global-visual-line-mode t)
+;;(setq-default truncate-lines t)
+(setq-default global-visual-line-mode t)
 
 ;; Set default font
 (add-to-list 'default-frame-alist '(font . "Fira Code 12")) ;; "Andale Mono 12","Inconsolata 14"
