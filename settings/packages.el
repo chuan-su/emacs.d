@@ -53,7 +53,7 @@
     move-text
     goto-chg
     which-key
-    golden-ratio
+    groovy-mode
     ) "required packages.")
 
 ; method to check if all packages are installed
