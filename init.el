@@ -204,6 +204,7 @@
   :ensure t
   :init
   (add-hook 'prog-mode-hook 'nlinum-mode)
+  (add-hook 'erlang-mode-hook 'nlinum-mode)
   :bind (("C-c t l" . nlinum-mode)))
 
 (use-package smartparens-config
@@ -355,6 +356,9 @@
   :ensure t
   :mode (("\\.gradle\\'"     . groovy-mode)
          ("\\.groovy\\'"    . groovy-mode))
+  :init
+  (add-hook 'groovy-mode-hook (lambda ()
+                              (setq c-basic-offset 2)))
   )
 
 (use-package ruby-mode
@@ -374,6 +378,21 @@
   :ensure t
   :config
   (rvm-use-default))
+
+(use-package erlang
+  :ensure t
+  ;; We need to specify erlang-mode explicitely as the package is not called
+  ;; erlang-mode.
+  :mode (("\\.erl\\'" . erlang-mode)
+         ("\\.hrl\\'" . erlang-mode)
+         ("\\.xrl\\'" . erlang-mode)
+         ("sys\\.config\\'" . erlang-mode)
+         ("rebar\\.config\\'" . erlang-mode)
+         ("\\.app\\(\\.src\\)?\\'" . erlang-mode))
+  :config
+  (setq erlang-indent-level 2)
+  (progn
+    (add-hook 'erlang-mode-hook 'flycheck-mode)))
 
 (use-package web-mode
   :defer t

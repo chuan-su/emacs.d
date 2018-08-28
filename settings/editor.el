@@ -34,7 +34,7 @@
 (setq mouse-wheel-progressive-speed nil)
 (setq-default cursor-type 'bar)
 (setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
+(setq-default tab-width 2)
 ;;(setq-default truncate-lines t)
 (setq-default global-visual-line-mode t)
 

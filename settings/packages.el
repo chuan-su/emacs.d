@@ -54,6 +54,7 @@
     goto-chg
     which-key
     groovy-mode
+    erlang
     ) "required packages.")
 
 ; method to check if all packages are installed
