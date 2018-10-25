@@ -35,6 +35,9 @@
 (require 'packages)
 (require 'use-package)
 
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
 ;;favorite theme
 (use-package solarized
   :if (display-graphic-p)

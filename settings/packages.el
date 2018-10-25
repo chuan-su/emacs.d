@@ -31,6 +31,7 @@
     ibuffer
     neotree
     reveal-in-osx-finder
+    exec-path-from-shell
     multiple-cursors
     smartparens
     rainbow-delimiters
