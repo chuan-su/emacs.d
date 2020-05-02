@@ -54,6 +54,7 @@
     which-key
     erlang
     evil
+    evil-surround
     ) "required packages.")
 
 ; method to check if all packages are installed

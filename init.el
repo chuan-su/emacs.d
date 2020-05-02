@@ -444,6 +444,11 @@
 (use-package evil
   :ensure t ;; install the evil package if not installed
   :config ;; tweak evil after loading it
-  (evil-mode 1))
+  (evil-mode 1)
+  :config
+  (use-package evil-surround
+    :ensure t
+    :init
+    (global-evil-surround-mode)))
 
 ;;; init.el ends here
