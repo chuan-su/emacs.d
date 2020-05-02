@@ -162,14 +162,6 @@
   (define-key ivy-minibuffer-map (kbd "<return>") 'ivy-alt-done))
 
 
-(use-package windmove                   ; Move between windows with Shift+Arrow
-  :bind (("C-x w <left>"  . windmove-left)
-         ("C-x w <right>" . windmove-right)
-         ("C-x w <up>"    . windmove-up)
-         ("C-x w <down>"  . windmove-down))
-  :config (windmove-default-keybindings 'shift))
-
-
 (use-package multiple-cursors           ; Edit text with multiple cursors
   :ensure t
   :bind (("M-p". mc/mark-previous-like-this)
