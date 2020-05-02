@@ -468,4 +468,10 @@
     (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
     ))
 
+;; evil
+(use-package evil
+  :ensure t ;; install the evil package if not installed
+  :config ;; tweak evil after loading it
+  (evil-mode 1))
+
 ;;; init.el ends here

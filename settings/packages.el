@@ -56,6 +56,7 @@
     which-key
     groovy-mode
     erlang
+    evil
     ) "required packages.")
 
 ; method to check if all packages are installed
