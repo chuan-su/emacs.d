@@ -40,10 +40,8 @@
     company-restclient
     projectile
     dockerfile-mode
-    scala-mode
     flycheck
     js2-mode
-    php-mode
     rvm
     web-mode
     emmet-mode
@@ -54,7 +52,6 @@
     move-text
     goto-chg
     which-key
-    groovy-mode
     erlang
     evil
     ) "required packages.")

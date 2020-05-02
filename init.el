@@ -312,10 +312,6 @@
 
   :diminish projectile-mode)
 
-(use-package scala-mode
-  :interpreter
-  ("scala" . scala-mode))
-
 (use-package js2-mode                   ; Powerful Javascript mode
   :ensure t
   :defer t
@@ -340,22 +336,6 @@
                   '("$" "unsafeWindow" "localStorage" "jQuery"
                     "setTimeout" "setInterval" "location" "skewer"
                     "console" "phantom"))))
-(use-package php-mode
-  :ensure t
-  :mode "\\.php[345]?\\'"
-  :init
-  (add-hook 'php-mode-hook 'php-enable-symfony2-coding-style)
-  )
-
-(use-package groovy-mode
-  :ensure t
-  :mode (("\\.gradle\\'"     . groovy-mode)
-         ("\\.groovy\\'"    . groovy-mode))
-  :init
-  (add-hook 'groovy-mode-hook (lambda ()
-                              (setq c-basic-offset 2)))
-  )
-
 (use-package ruby-mode
   :ensure t
   :mode "\\.rb\\'"
