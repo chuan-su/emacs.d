@@ -468,5 +468,9 @@
   (use-package evil-surround
     :ensure t
     :init
-    (global-evil-surround-mode)))
+    (global-evil-surround-mode))
+  (use-package evil-nerd-commenter
+    :ensure
+    :config (progn
+              (evilnc-default-hotkeys))))
 ;;; init.el ends here

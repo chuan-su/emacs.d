@@ -55,6 +55,7 @@
     erlang
     evil
     evil-surround
+    evil-nerd-commenter
     ) "required packages.")
 
 ; method to check if all packages are installed
