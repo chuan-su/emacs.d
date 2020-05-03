@@ -19,7 +19,7 @@
 ;; Get rid of Welcome screeen
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
-(setq initial-scratch-message ";; Life is Good")
+(setq initial-scratch-message ";; No Negative Emotions Yeah!")
 
 ;; encoding - Set preferred encoding system as UTF-8
 (prefer-coding-system 'utf-8)
@@ -35,7 +35,7 @@
 (setq-default cursor-type 'bar)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
-;;(setq-default truncate-lines t)
+(setq-default truncate-lines nil)
 (setq-default global-visual-line-mode t)
 
 ;; Set default font

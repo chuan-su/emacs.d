@@ -171,7 +171,6 @@
   (define-key ivy-minibuffer-map (kbd "<return>") 'ivy-alt-done)
   (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-next-line)
   (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-previous-line)
-  (define-key ivy-minibuffer-map (kbd "<return>") 'ivy-alt-done)
   (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
   )
 
@@ -454,6 +453,7 @@
   :defer t
   :ensure org-plus-contrib
   :config
+  (setq org-startup-truncated nil)
   (progn
     (setcar (nthcdr 2 org-emphasis-regexp-components) " \t\r\n,\"")
     (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
