@@ -99,7 +99,7 @@
 
 (use-package neotree
   :ensure t
-  :bind (("C-c ." . neotree-toggle))
+  :bind (("<f2>" . neotree-toggle))
   :config (setq neo-window-width 32
                 neo-create-file-auto-open t
                 neo-banner-message nil
@@ -107,7 +107,16 @@
                 neo-mode-line-type 'neotree
                 neo-smart-open t
                 neo-show-hidden-files t
-                neo-auto-indent-point t))
+                neo-auto-indent-point t)
+    (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
+    (evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-quick-look)
+    (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
+    (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
+    (evil-define-key 'normal neotree-mode-map (kbd "g") 'neotree-refresh)
+    (evil-define-key 'normal neotree-mode-map (kbd "j") 'neotree-next-line)
+    (evil-define-key 'normal neotree-mode-map (kbd "k") 'neotree-previous-line)
+    (evil-define-key 'normal neotree-mode-map (kbd "A") 'neotree-stretch-toggle)
+    (evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle))
 
 ;; Mac only, reveal current buffer in finder
 (use-package reveal-in-osx-finder
@@ -159,7 +168,12 @@
   (setq ivy-use-virtual-buffers nil)
   (setq ivy-display-style 'fancy)
   (setq ivy-initial-inputs-alist nil)
-  (define-key ivy-minibuffer-map (kbd "<return>") 'ivy-alt-done))
+  (define-key ivy-minibuffer-map (kbd "<return>") 'ivy-alt-done)
+  (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-next-line)
+  (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-previous-line)
+  (define-key ivy-minibuffer-map (kbd "<return>") 'ivy-alt-done)
+  (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
+  )
 
 
 (use-package multiple-cursors           ; Edit text with multiple cursors
@@ -228,6 +242,11 @@
   :diminish company-mode
   :init (global-company-mode)
   :config
+  (bind-keys :map company-active-map
+             ("C-j" . company-select-next)
+             ("C-k" . company-select-previous)
+             ("C-d" . company-show-doc-buffer)
+             ("<tab>" . company-complete))
   (setq company-tooltip-align-annotations t
         company-tooltip-flip-when-above t
         ;; Easy navigation to candidates with M-<n>
@@ -450,5 +469,4 @@
     :ensure t
     :init
     (global-evil-surround-mode)))
-
 ;;; init.el ends here
