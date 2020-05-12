@@ -113,8 +113,8 @@
     (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
     (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
     (evil-define-key 'normal neotree-mode-map (kbd "g") 'neotree-refresh)
-    (evil-define-key 'normal neotree-mode-map (kbd "j") 'neotree-next-line)
-    (evil-define-key 'normal neotree-mode-map (kbd "k") 'neotree-previous-line)
+    (evil-define-key 'normal neotree-mode-map (kbd "n") 'neotree-next-line)
+    (evil-define-key 'normal neotree-mode-map (kbd "p") 'neotree-previous-line)
     (evil-define-key 'normal neotree-mode-map (kbd "A") 'neotree-stretch-toggle)
     (evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle))
 
@@ -169,8 +169,8 @@
   (setq ivy-display-style 'fancy)
   (setq ivy-initial-inputs-alist nil)
   (define-key ivy-minibuffer-map (kbd "<return>") 'ivy-alt-done)
-  (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-next-line)
-  (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-previous-line)
+  (define-key ivy-minibuffer-map (kbd "C-n") 'ivy-next-line)
+  (define-key ivy-minibuffer-map (kbd "C-p") 'ivy-previous-line)
   (define-key ivy-minibuffer-map (kbd "<escape>") 'minibuffer-keyboard-quit)
   )
 
@@ -242,8 +242,8 @@
   :init (global-company-mode)
   :config
   (bind-keys :map company-active-map
-             ("C-j" . company-select-next)
-             ("C-k" . company-select-previous)
+             ("C-n" . company-select-next)
+             ("C-p" . company-select-previous)
              ("C-d" . company-show-doc-buffer)
              ("<tab>" . company-complete))
   (setq company-tooltip-align-annotations t
