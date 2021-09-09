@@ -40,7 +40,7 @@
 
 ;; Set default font
 (add-to-list 'default-frame-alist '(font . "Fira Code 12")) ;; "Andale Mono 12","Inconsolata 14"
-(set-default-font "Fira Code 12")
+;; (set-default-font "Fira Code 12")
 
 ;; Key bindings
 (global-set-key (kbd "M-g") 'goto-line)

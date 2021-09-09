@@ -473,4 +473,22 @@
     :ensure
     :config (progn
               (evilnc-default-hotkeys))))
+
+(use-package go-mode
+    :mode "\\*\\.go"
+    :ensure t
+    :init
+    (add-hook 'go-mode-hook
+          (lambda ()
+            (add-hook 'before-save-hook 'gofmt-before-save)
+            (setq tab-width 8)
+            (setq indent-tabs-mode 1)))
+    :config (add-hook 'go-mode-hook
+    (lambda ()
+    (flycheck-mode)
+    ;;(use-package company-go
+      ;;:config (set (make-local-variable 'company-backends)
+    ;;     '(company-go))
+     ;; (company-mode))
+    )))
 ;;; init.el ends here
