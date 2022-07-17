@@ -34,11 +34,11 @@ I also added an alias in my .bashrc
 
 This will shutdown the daemon immediately with out prompting or saving files
 
-### Customized Keymap
+### Keymap
 
   * `M-j    `  join line
   * `M-\    `  M-x delete-horizontal-space
-  * `C-c .  `  toggle neotree
+  * `<F2>   `  toggle neotree
   * `C-c f J`  reveal-in-osx-finder
   * `C-c j i`  avy-goto-char-in-line
   * `C-c j j`  avy-goto-char
@@ -49,5 +49,16 @@ This will shutdown the daemon immediately with out prompting or saving files
   * `C-c j p`  goto-last-change
   * `C-c j n`  goto-last-change-reverse
   * `C-c g g`  counsel-git-grep
+  * `C-x p f`  [projectile](https://docs.projectile.mx/projectile/usage.html) find-file
   * `C-c C-<`  mc/mark-all-like-this
   * `C-c C-,`  mc/mark-all-like-this
+  * `C-x v g`  vc-annotate, [git annotate](https://stackoverflow.com/questions/15460550/git-blame-with-commit-details-in-emacs)
+
+#### Reformat Buffer
+
+`C-x h C-M-\`
+
+```
+C-x h runs the command mark-whole-buffer
+C-M-\ runs the command indent-region
+```

@@ -57,6 +57,7 @@
     evil-surround
     evil-nerd-commenter
     go-mode
+    vue-mode
     ) "required packages.")
 
 ; method to check if all packages are installed

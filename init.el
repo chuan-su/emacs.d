@@ -388,11 +388,16 @@
     (add-hook 'erlang-mode-hook 'flycheck-mode)))
 
 (use-package web-mode
+  :custom
+  (web-mode-markup-indent-offset 2)
+  (web-mode-css-indent-offset 2)
+  (web-mode-code-indent-offset 2)
   :defer t
   :init
   (progn
     (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.vue?\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode)))
   :config
   (progn
@@ -404,6 +409,16 @@
                 (setq web-mode-enable-current-element-highlight t)
                 (setq web-mode-markup-indent-offset 2)
                 (setq web-mode-enable-auto-pairing t)))))
+
+(use-package vue-mode
+  :ensure t
+  :mode "\\.vue\\'"
+  :config
+  (setq indent-tabs-mode nil)
+  (setq js-indent-level 2)
+  (add-hook 'vue-mode-hook (lambda () (highlight-indent-guides-mode t)))
+  (set-face-background 'mmm-default-submode-face nil))
+
 ;; emmet
 (use-package emmet-mode
   :ensure t
