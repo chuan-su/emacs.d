@@ -21,15 +21,10 @@
 (setq backup-directory-alist
       `(("." . ,user-backup-directory)))
 
-;; Keep emacs Custom-settings in separate file
-(setq custom-file
-      (expand-file-name "custom.el" user-settings-directory)) ;; keep emacs custom-settings in separate file
-
 (make-directory user-cache-directory  t)
 (make-directory user-backup-directory t)
 
 (add-to-list 'load-path user-settings-directory)
-(load custom-file)
 
 (require 'editor)
 (require 'packages)
@@ -208,12 +203,12 @@
     (add-hook hook #'rainbow-delimiters-mode)))
 
 ;; Line numbers in display margin
-(use-package nlinum
+(use-package display-line-numbers
   :ensure t
   :init
-  (add-hook 'prog-mode-hook 'nlinum-mode)
-  (add-hook 'erlang-mode-hook 'nlinum-mode)
-  :bind (("C-c t l" . nlinum-mode)))
+  (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+  (add-hook 'erlang-mode-hook 'display-line-numbers-mode)
+  :bind (("C-c t l" . display-line-numbers-mode)))
 
 (use-package smartparens-config
   :ensure smartparens

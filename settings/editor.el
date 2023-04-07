@@ -39,7 +39,7 @@
 (setq-default global-visual-line-mode t)
 
 ;; Set default font
-(add-to-list 'default-frame-alist '(font . "Fira Code 12")) ;; "Andale Mono 12","Inconsolata 14"
+;; (add-to-list 'default-frame-alist '(font . "Fira Code 12")) ;; "Andale Mono 12","Inconsolata 14"
 ;; (set-default-font "Fira Code 12")
 
 ;; Key bindings

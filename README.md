@@ -7,6 +7,8 @@ Run Emacs in daemon mode:
 
     $ emacs -daemon
 
+    $ brew services restart d12frosted/emacs-plus/emacs-plus@29 # with emacs-plus
+
 Afterwards I connect to the server with either a terminal or a GUI client like this:
 
     $ emacsclient -t
