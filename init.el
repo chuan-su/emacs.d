@@ -463,17 +463,6 @@
   (shell-command-on-region b e "python -m json.tool" (current-buffer) t)
   )
 
-;; org mode
-(use-package org
-  :defer t
-  :ensure org-plus-contrib
-  :config
-  (setq org-startup-truncated nil)
-  (progn
-    (setcar (nthcdr 2 org-emphasis-regexp-components) " \t\r\n,\"")
-    (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
-    ))
-
 ;; evil
 (use-package evil
   :ensure t ;; install the evil package if not installed
