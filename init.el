@@ -34,32 +34,33 @@
   (exec-path-from-shell-initialize))
 
 ;;favorite theme
-(use-package solarized
-  :if (display-graphic-p)
-  :config
-  (progn
-    ;; Disable variable pitch fonts in Solarized theme
-    (setq solarized-use-variable-pitch nil
-          ;; Prefer italics over bold
-          solarized-use-less-bold t
-          solarized-use-more-italic t
-          solarized-distinct-doc-face t ; Emphasize docstrings
-          ;; I find different font sizes irritating.
-          solarized-height-minus-1 1.0
-          solarized-height-plus-1 1.0
-          solarized-height-plus-2 1.0
-          solarized-height-plus-3 1.0
-          solarized-height-plus-4 1.0)
-    (load-theme 'solarized-dark 'no-confirm)))
-
-(use-package zenburn-theme
-  :if (not (display-graphic-p))
-  :init (load-theme 'zenburn 'no-confirm))
-
-;; (use-package zenburn-theme
+;; (use-package solarized
+;;   :if (display-graphic-p)
 ;;   :config
 ;;   (progn
-;;     (load-theme 'zenburn 'no-confirm)))
+;;     ;; Disable variable pitch fonts in Solarized theme
+;;     (setq solarized-use-variable-pitch nil
+;;           ;; Prefer italics over bold
+;;           solarized-use-less-bold t
+;;           solarized-use-more-italic t
+;;           solarized-distinct-doc-face t ; Emphasize docstrings
+;;           ;; I find different font sizes irritating.
+;;           solarized-height-minus-1 1.0
+;;           solarized-height-plus-1 1.0
+;;           solarized-height-plus-2 1.0
+;;           solarized-height-plus-3 1.0
+;;           solarized-height-plus-4 1.0)
+;;     (load-theme 'solarized-dark 'no-confirm)))
+
+;; zenburg terminal-only
+;; (use-package zenburn-theme
+;;   :if (not (display-graphic-p))
+;;   :init (load-theme 'zenburn 'no-confirm))
+
+(use-package zenburn-theme
+  :config
+  (progn
+    (load-theme 'zenburn 'no-confirm)))
 
 (use-package fringe
   :config
