@@ -27,6 +27,8 @@ emacs.frameg
 .emacs.desktop
 .emacs.desktop.lock
 eshell
+eln-cache/
+transient
 
 # projectile
 projectile-bookmarks.eld
