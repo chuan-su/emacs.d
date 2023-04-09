@@ -114,25 +114,37 @@
     (evil-define-key 'normal neotree-mode-map (kbd "A") 'neotree-stretch-toggle)
     (evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle))
 
-;; Mac only, reveal current buffer in finder
+;; Mac only
 (use-package reveal-in-osx-finder
-  :if (memq window-system '(mac ns))
+  :if (memq window-system '(mac ns x))
   :ensure t
   ;; Bind analogous to `dired-jump' at C-c f j
   :bind (("C-c f J" . reveal-in-osx-finder)))
 
-;; Mac only
+(use-package reveal-in-osx-finder
+  :if (daemonp)
+  :ensure t
+  ;; Bind analogous to `dired-jump' at C-c f j
+  :bind (("C-c f J" . reveal-in-osx-finder)))
+
 (use-package exec-path-from-shell
-  :if (memq window-system '(mac ns))
   :ensure t
   :config
-  (exec-path-from-shell-initialize))
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize))
+  (when (daemonp)
+    (exec-path-from-shell-initialize))
+  )
 
 ;; Mac only
 (use-package pbcopy
-  :if (memq window-system '(mac ns))
+  :ensure t
   :config
-  (turn-on-pbcopy))
+  (when (memq window-system '(mac ns x))
+    (turn-on-pbcopy))
+  (when (daemonp)
+    (turn-on-pbcopy))
+  )
 
 (use-package avy-jump              ; Jump to characters in buffers
   :ensure avy
