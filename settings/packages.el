@@ -54,6 +54,7 @@
     evil-nerd-commenter
     go-mode
     vue-mode
+    php-mode
     ) "required packages.")
 
 ; method to check if all packages are installed

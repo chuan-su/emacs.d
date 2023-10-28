@@ -503,4 +503,12 @@
     ;;     '(company-go))
      ;; (company-mode))
     )))
+
+(use-package php-mode
+    :mode "\\.php\\'"
+    :ensure t
+    :init
+    (add-hook 'php-mode-hook 'php-enable-default-coding-style)
+    (add-hook 'php-mode-hook #'(lambda() (setq c-basic-offset 2)))
+    )
 ;;; init.el ends here
