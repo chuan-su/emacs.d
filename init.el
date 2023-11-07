@@ -512,3 +512,16 @@
     (add-hook 'php-mode-hook #'(lambda() (setq c-basic-offset 2)))
     )
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(php-mode zenburn-theme yaml-mode which-key web-mode vue-mode visual-regexp-steroids use-package solarized-theme smartparens rvm reveal-in-osx-finder rainbow-delimiters projectile pbcopy nlinum neotree multiple-cursors move-text markdown-mode magit js2-mode go-mode flycheck expand-region exec-path-from-shell evil-surround evil-nerd-commenter erlang emmet-mode dockerfile-mode counsel company-restclient avy)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
